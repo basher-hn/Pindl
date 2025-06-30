@@ -1,90 +1,146 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أداة تحميل من Pinterest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تحميل TikTok & Pinterest</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #e3f2fd);
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #141e30, #243b55);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
     }
-    header {
-      background-color: #c62828;
-      color: white;
-      padding: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-radius: 0 0 10px 10px;
-    }
-    .container {
-      background: white;
-      padding: 20px;
+
+    h1 {
       margin-top: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-size: 28px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px;
       width: 90%;
       max-width: 500px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       text-align: center;
+      backdrop-filter: blur(10px);
     }
-    input[type="text"] {
-      width: 100%;
+
+    .section h2 {
+      margin-bottom: 10px;
+      color: #ffeb3b;
+    }
+
+    .input-box {
+      display: flex;
+      align-items: center;
+      background: #ffffff10;
+      border-radius: 8px;
       padding: 10px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .input-box input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+      padding: 8px;
       direction: ltr;
     }
+
+    .input-box::before {
+      content: "🔗";
+      margin-left: 8px;
+      font-size: 18px;
+    }
+
     button {
-      background-color: #c62828;
+      background: linear-gradient(45deg, #ff6f00, #ff9800);
       color: white;
+      padding: 10px 25px;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: 50px;
       cursor: pointer;
       font-size: 16px;
-      transition: background 0.3s;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #ff9800;
     }
+
     button:hover {
-      background-color: #a41818;
+      box-shadow: 0 0 20px #ffc107;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 13px;
+      color: #bbb;
+      text-align: center;
     }
   </style>
-  <script>
-    function openPinterestLink() {
-      const input = document.querySelector("input");
-      const url = input.value.trim();
-
-      // تحقق مبسط
-      if (url.length < 10 || (!url.includes("pinterest") && !url.includes("/pin/"))) {
-        alert("الرابط غير صالح، يرجى التأكد من أنه من Pinterest");
-        return;
-      }
-
-      // فتح الرابط مباشرة
-      window.open(url, "_blank");
-    }
-  </script>
 </head>
 <body>
 
-  <header>Pinterest Downloader</header>
+  <h1>🌀 أداة التحميل الخرافية</h1>
 
-  <div class="container">
-    <input type="text" placeholder="ضع رابط الصورة أو الفيديو من Pinterest هنا">
-    <button onclick="openPinterestLink()">تحميل</button>
+  <!-- TikTok Section -->
+  <div class="section">
+    <h2>تحميل من TikTok</h2>
+    <div class="input-box">
+      <input type="text" id="tiktokLink" placeholder="الصق رابط فيديو أو صورة TikTok">
+    </div>
+    <button onclick="downloadTikTok()">تحميل بدون علامة مائية</button>
   </div>
+
+  <!-- Pinterest Section -->
+  <div class="section">
+    <h2>تحميل من Pinterest</h2>
+    <div class="input-box">
+      <input type="text" id="pinterestLink" placeholder="الصق رابط فيديو أو صورة Pinterest">
+    </div>
+    <button onclick="downloadPinterest()">تحميل مباشر</button>
+  </div>
+
+  <footer>
+    تم التطوير والتصميم بواسطة CoOoBRA © 2025
+  </footer>
+
+  <script>
+    function downloadTikTok() {
+      const link = document.getElementById("tiktokLink").value.trim();
+      if (!link || !link.includes("tiktok")) {
+        alert("يرجى إدخال رابط TikTok صحيح");
+        return;
+      }
+      // ربط مباشر مع API خارجي بدون علامة مائية
+      window.open("https://snaptik.app/?" + link, "_blank");
+    }
+
+    function downloadPinterest() {
+      const link = document.getElementById("pinterestLink").value.trim();
+      if (!link || (!link.includes("pinterest") && !link.includes("/pin/"))) {
+        alert("يرجى إدخال رابط Pinterest صحيح");
+        return;
+      }
+      window.open(link, "_blank");
+    }
+  </script>
 
 </body>
 </html>
