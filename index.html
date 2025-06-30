@@ -45,6 +45,7 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      direction: ltr;
     }
     button {
       background-color: #c62828;
@@ -65,11 +66,13 @@
       const input = document.querySelector("input");
       const url = input.value.trim();
 
-      if (url === "" || !url.includes("pinterest.")) {
-        alert("يرجى إدخال رابط صحيح من Pinterest");
+      // تحقق مبسط
+      if (url.length < 10 || (!url.includes("pinterest") && !url.includes("/pin/"))) {
+        alert("الرابط غير صالح، يرجى التأكد من أنه من Pinterest");
         return;
       }
 
+      // فتح الرابط مباشرة
       window.open(url, "_blank");
     }
   </script>
@@ -79,7 +82,7 @@
   <header>Pinterest Downloader</header>
 
   <div class="container">
-    <input type="text" placeholder="ضع رابط الصورة من Pinterest هنا">
+    <input type="text" placeholder="ضع رابط الصورة أو الفيديو من Pinterest هنا">
     <button onclick="openPinterestLink()">تحميل</button>
   </div>
 
