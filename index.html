@@ -60,6 +60,19 @@
       background-color: #a41818;
     }
   </style>
+  <script>
+    function openPinterestLink() {
+      const input = document.querySelector("input");
+      const url = input.value.trim();
+
+      if (url === "" || !url.includes("pinterest.")) {
+        alert("يرجى إدخال رابط صحيح من Pinterest");
+        return;
+      }
+
+      window.open(url, "_blank");
+    }
+  </script>
 </head>
 <body>
 
@@ -67,7 +80,7 @@
 
   <div class="container">
     <input type="text" placeholder="ضع رابط الصورة من Pinterest هنا">
-    <button>تحميل</button>
+    <button onclick="openPinterestLink()">تحميل</button>
   </div>
 
 </body>
