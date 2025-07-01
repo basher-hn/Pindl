@@ -71,6 +71,17 @@
     .label {
       font-weight: bold;
     }
+
+    pre.code-box {
+      background: #f1f1f1;
+      padding: 12px;
+      border-radius: 10px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 16px;
+      direction: ltr;
+    }
   </style>
 </head>
 <body>
@@ -159,7 +170,7 @@
 
           item.innerHTML = `
             <div><strong>Preview:</strong><br>${data.previewHTML}</div>
-            <div><strong>CSS:</strong><br><pre style="background:#eee;padding:10px;border-radius:8px;">${data.cssCode}</pre></div>
+            <div><strong>CSS:</strong><br><pre class="code-box">${data.cssCode}</pre></div>
             <div><strong>NEW:</strong> ${data.isNew ? "✅" : "❌"}</div>
             <br>
             <button class="edit" onclick="editCode('${key}', \`${data.previewHTML}\`, \`${data.cssCode}\`, ${data.isNew})">✏️ تعديل</button>
@@ -192,7 +203,6 @@
       document.getElementById("isNew").value = "false";
     }
 
-    // تحميل الأكواد أول ما تفتح الصفحة
     window.onload = loadCodes;
   </script>
 
