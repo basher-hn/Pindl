@@ -84,41 +84,63 @@
     🎨 CSS Codes – Bashir Design
   </div>
 
-  <div class="grid">
-
-    <!-- كود 1: زر أخضر -->
-    <div class="card">
-      <div class="preview">
-        <button style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 20px;">
-          زر
-        </button>
-      </div>
-      <a href="copy.html?id=1" class="btn">عرض الكود</a>
-      <div class="badge">NEW</div>
-    </div>
-
-    <!-- كود 2: مربع بحدود -->
-    <div class="card">
-      <div class="preview">
-        <div style="border: 1px solid #aaa; padding: 10px;">
-          مربع بحدود خفيفة
-        </div>
-      </div>
-      <a href="copy.html?id=2" class="btn">عرض الكود</a>
-    </div>
-
-    <!-- كود 3: خلفية صفراء -->
-    <div class="card">
-      <div class="preview">
-        <div style="background: #fff8c6; padding: 15px; border-radius: 5px;">
-          خلفية صفراء باهتة
-        </div>
-      </div>
-      <a href="copy.html?id=3" class="btn">عرض الكود</a>
-      <div class="badge">NEW</div>
-    </div>
-
+  <div class="grid" id="codesContainer">
+    <!-- الأكواد راح تنعرض هنا تلقائياً -->
   </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
+      authDomain: "soudfa-9a558.firebaseapp.com",
+      databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
+      projectId: "soudfa-9a558",
+      storageBucket: "soudfa-9a558.appspot.com",
+      messagingSenderId: "889312889458",
+      appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const container = document.getElementById('codesContainer');
+
+    db.ref("codes").orderByKey().once("value", (snapshot) => {
+      const data = snapshot.val();
+      const keys = Object.keys(data).reverse(); // حتى نعرض من الأحدث
+
+      keys.forEach((key) => {
+        const item = data[key];
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const preview = document.createElement("div");
+        preview.className = "preview";
+        preview.innerHTML = item.previewHTML;
+
+        const btn = document.createElement("a");
+        btn.href = `copy.html?id=${key}`;
+        btn.className = "btn";
+        btn.innerText = "عرض الكود";
+
+        card.appendChild(preview);
+        card.appendChild(btn);
+
+        if (item.isNew) {
+          const badge = document.createElement("div");
+          badge.className = "badge";
+          badge.innerText = "NEW";
+          card.appendChild(badge);
+        }
+
+        container.appendChild(card);
+      });
+    });
+  </script>
 
 </body>
 </html>
