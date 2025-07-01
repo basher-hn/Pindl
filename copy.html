@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bashir Design – كود CSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet" />
   <style>
     body {
       background: #f2f6fb;
-      font-family: sans-serif;
+      font-family: 'Tajawal', sans-serif;
       padding: 20px;
       margin: 0;
       color: #333;
     }
     .header {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       margin-bottom: 20px;
       text-align: center;
+      color: #222;
     }
     .box {
       background: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.05);
       position: relative;
+      max-width: 500px;
+      margin: auto;
     }
     .new-badge {
       position: absolute;
@@ -32,15 +36,21 @@
       background: #28a745;
       color: #fff;
       font-size: 12px;
-      padding: 4px 8px;
-      border-radius: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .preview {
+      margin-bottom: 15px;
+      text-align: center;
     }
     pre {
       background: #f0f0f0;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       overflow-x: auto;
       font-size: 14px;
+      direction: ltr;
+      text-align: left;
     }
     button {
       display: block;
@@ -48,10 +58,14 @@
       background: #007bff;
       color: white;
       border: none;
-      padding: 12px;
+      padding: 14px;
       margin-top: 15px;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
     }
   </style>
 </head>
@@ -61,6 +75,7 @@
 
   <div class="box">
     <div id="new-badge" class="new-badge" style="display:none;">NEW</div>
+    <div id="preview-box" class="preview"></div>
     <pre id="code">جاري التحميل...</pre>
     <button onclick="copyCode()">📋 نسخ الكود</button>
   </div>
@@ -93,15 +108,18 @@
         const data = snapshot.val();
         if (data) {
           document.getElementById("code").textContent = data.code || "لا يوجد كود.";
+          if (data.preview) {
+            document.getElementById("preview-box").innerHTML = data.preview;
+          }
           if (data.new === true) {
             document.getElementById("new-badge").style.display = "block";
           }
         } else {
-          document.getElementById("code").textContent = "لم يتم العثور على الكود.";
+          document.getElementById("code").textContent = "⚠️ لم يتم العثور على الكود.";
         }
       });
     } else {
-      document.getElementById("code").textContent = "لم يتم تحديد ID.";
+      document.getElementById("code").textContent = "⚠️ لم يتم تحديد ID.";
     }
 
     function copyCode() {
