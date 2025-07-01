@@ -1,112 +1,119 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSS Codes – Bashir Design</title>
   <style>
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: #f9f9fb;
-      padding: 20px;
       margin: 0;
+      font-family: 'Tahoma', sans-serif;
+      background-color: #fefefe;
+      color: #222;
+      padding: 20px;
+    }
+
+    .header {
+      background-color: #f0f0f0;
       color: #333;
-    }
-    h1 {
+      padding: 10px 20px;
+      margin: 0 auto 30px;
+      width: fit-content;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s ease;
       text-align: center;
-      color: #2c3e50;
-      margin-bottom: 30px;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
     .card {
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      padding: 15px;
-      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+      padding: 16px;
       position: relative;
+      transition: transform 0.2s ease;
     }
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
+
+    .card:hover {
+      transform: translateY(-5px);
     }
-    .card p {
-      margin: 0 0 15px;
-      color: #666;
+
+    .preview {
+      background-color: #f9f9f9;
+      border: 1px dashed #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+      font-size: 14px;
     }
+
     .btn {
-      display: inline-block;
-      padding: 10px 16px;
-      background-color: #4CAF50;
-      color: white;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      font-size: 14px;
     }
-    .new-badge {
+
+    .badge {
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #ffc107;
-      color: #000;
-      padding: 3px 10px;
-      border-radius: 50px;
+      background-color: red;
+      color: white;
+      padding: 2px 8px;
       font-size: 12px;
-      font-weight: bold;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎨 CSS Codes – Bashir Design</h1>
-  <div id="cards"></div>
+  <div class="header">
+    🎨 CSS Codes – Bashir Design
+  </div>
 
-  <!-- Firebase scripts -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <div class="grid">
 
-  <script>
-    // إعدادات Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
-      authDomain: "soudfa-9a558.firebaseapp.com",
-      databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
-      projectId: "soudfa-9a558",
-      storageBucket: "soudfa-9a558.appspot.com",
-      messagingSenderId: "215324189451",
-      appId: "1:215324189451:web:1a309de7a3a589adfb7aa2"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const dbRef = firebase.database().ref("codes");
+    <!-- كود 1 -->
+    <div class="card">
+      <div class="preview">
+        <div style="color: blue; font-weight: bold;">نص أزرق غامق</div>
+      </div>
+      <a href="copy.html?id=1" class="btn">عرض الكود</a>
+      <div class="badge">NEW</div>
+    </div>
 
-    // جلب البيانات من القاعدة
-    dbRef.once("value", snapshot => {
-      const container = document.getElementById("cards");
-      snapshot.forEach(child => {
-        const data = child.val();
-        const id = child.key;
+    <!-- كود 2 -->
+    <div class="card">
+      <div class="preview">
+        <div style="border: 1px solid #aaa; padding: 5px;">مربع بحدود خفيفة</div>
+      </div>
+      <a href="copy.html?id=2" class="btn">عرض الكود</a>
+    </div>
 
-        const card = document.createElement("div");
-        card.className = "card";
+    <!-- كود 3 -->
+    <div class="card">
+      <div class="preview">
+        <div style="background: #ffd; padding: 10px;">خلفية صفراء باهتة</div>
+      </div>
+      <a href="copy.html?id=3" class="btn">عرض الكود</a>
+      <div class="badge">NEW</div>
+    </div>
 
-        // شارة NEW
-        if (data.isNew === true) {
-          const badge = document.createElement("div");
-          badge.className = "new-badge";
-          badge.textContent = "NEW";
-          card.appendChild(badge);
-        }
+  </div>
 
-        // محتوى الكارت
-        card.innerHTML += `
-          <h3>${data.title || "بدون عنوان"}</h3>
-          <p>${data.type || "نوع غير معروف"}</p>
-          <a class="btn" href="copy.html?id=${id}">عرض الكود</a>
-        `;
-
-        container.appendChild(card);
-      });
-    });
-  </script>
-  <div id="container"></div>
 </body>
 </html>
