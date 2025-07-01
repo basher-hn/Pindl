@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bashir Design – كود CSS</title>
+  <style>
+    body {
+      background: #f2f6fb;
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+    .header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .new-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background: #28a745;
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Bashir Design – كود CSS</div>
+
+  <div class="box">
+    <div id="new-badge" class="new-badge" style="display:none;">NEW</div>
+    <pre id="code">جاري التحميل...</pre>
+    <button onclick="copyCode()">📋 نسخ الكود</button>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
+      authDomain: "soudfa-9a558.firebaseapp.com",
+      databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
+      projectId: "soudfa-9a558",
+      storageBucket: "soudfa-9a558.appspot.com",
+      messagingSenderId: "149223694252",
+      appId: "1:149223694252:web:7bd2f0a8c03050b1ce6ff5"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function getID() {
+      const params = new URLSearchParams(location.search);
+      return params.get("id");
+    }
+
+    const id = getID();
+    if (id) {
+      db.ref("codes/" + id).once("value", snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          document.getElementById("code").textContent = data.code || "لا يوجد كود.";
+          if (data.new === true) {
+            document.getElementById("new-badge").style.display = "block";
+          }
+        } else {
+          document.getElementById("code").textContent = "لم يتم العثور على الكود.";
+        }
+      });
+    } else {
+      document.getElementById("code").textContent = "لم يتم تحديد ID.";
+    }
+
+    function copyCode() {
+      const code = document.getElementById("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("✅ تم نسخ الكود!");
+      });
+    }
+  </script>
+
+</body>
+</html>
