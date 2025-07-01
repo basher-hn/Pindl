@@ -1,88 +1,84 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bashir Design – كود CSS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عرض الكود – Bashir Design</title>
   <style>
     body {
-      background: #f2f6fb;
-      font-family: 'Tajawal', sans-serif;
+      font-family: 'Tahoma', sans-serif;
+      background: #fefefe;
       padding: 20px;
-      margin: 0;
-      color: #333;
-    }
-    .header {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
       color: #222;
     }
+
     .box {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.05);
-      position: relative;
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
     }
-    .new-badge {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      background: #28a745;
-      color: #fff;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
+
     .preview {
-      margin-bottom: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
       text-align: center;
+      background: #f9f9f9;
     }
+
     pre {
-      background: #f0f0f0;
-      padding: 12px;
+      background: #272727;
+      color: #0f0;
+      padding: 15px;
       border-radius: 8px;
       overflow-x: auto;
       font-size: 14px;
       direction: ltr;
-      text-align: left;
     }
-    button {
-      display: block;
-      width: 100%;
-      background: #007bff;
+
+    button.copy-btn {
+      background: #28a745;
       color: white;
       border: none;
-      padding: 14px;
-      margin-top: 15px;
-      font-size: 16px;
-      border-radius: 10px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 14px;
     }
-    button:hover {
-      background: #0056b3;
+
+    .badge {
+      display: inline-block;
+      background: red;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .not-found {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">Bashir Design – كود CSS</div>
-
-  <div class="box">
-    <div id="new-badge" class="new-badge" style="display:none;">NEW</div>
-    <div id="preview-box" class="preview"></div>
-    <pre id="code">جاري التحميل...</pre>
-    <button onclick="copyCode()">📋 نسخ الكود</button>
+  <div class="box" id="codeBox">
+    جاري التحميل...
   </div>
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
@@ -90,40 +86,40 @@
       databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
       projectId: "soudfa-9a558",
       storageBucket: "soudfa-9a558.appspot.com",
-      messagingSenderId: "149223694252",
-      appId: "1:149223694252:web:7bd2f0a8c03050b1ce6ff5"
+      messagingSenderId: "889312889458",
+      appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
     };
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    function getID() {
-      const params = new URLSearchParams(location.search);
-      return params.get("id");
-    }
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const box = document.getElementById("codeBox");
 
-    const id = getID();
-    if (id) {
-      db.ref("codes/" + id).once("value", snapshot => {
-        const data = snapshot.val();
-        if (data) {
-          document.getElementById("code").textContent = data.code || "لا يوجد كود.";
-          if (data.preview) {
-            document.getElementById("preview-box").innerHTML = data.preview;
-          }
-          if (data.new === true) {
-            document.getElementById("new-badge").style.display = "block";
-          }
-        } else {
-          document.getElementById("code").textContent = "⚠️ لم يتم العثور على الكود.";
-        }
-      });
+    if (!id) {
+      box.innerHTML = "<div class='not-found'>لم يتم العثور على الكود 😢</div>";
     } else {
-      document.getElementById("code").textContent = "⚠️ لم يتم تحديد ID.";
+      db.ref("codes/" + id).once("value", (snapshot) => {
+        if (!snapshot.exists()) {
+          box.innerHTML = "<div class='not-found'>الكود غير موجود أو تم حذفه ❌</div>";
+          return;
+        }
+
+        const data = snapshot.val();
+        const html = `
+          ${data.isNew ? "<div class='badge'>NEW</div>" : ""}
+          <div class="preview">${data.previewHTML}</div>
+          <pre id="codeText">${data.cssCode}</pre>
+          <button class="copy-btn" onclick="copyCode()">📋 نسخ الكود</button>
+        `;
+
+        box.innerHTML = html;
+      });
     }
 
     function copyCode() {
-      const code = document.getElementById("code").textContent;
+      const code = document.getElementById("codeText").innerText;
       navigator.clipboard.writeText(code).then(() => {
         alert("✅ تم نسخ الكود!");
       });
