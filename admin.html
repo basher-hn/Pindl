@@ -168,14 +168,39 @@
           const item = document.createElement("div");
           item.className = "code-item";
 
-          item.innerHTML = `
-            <div><strong>Preview:</strong><br>${data.previewHTML}</div>
-            <div><strong>CSS:</strong><br><pre class="code-box">${data.cssCode}</pre></div>
-            <div><strong>NEW:</strong> ${data.isNew ? "✅" : "❌"}</div>
-            <br>
-            <button class="edit" onclick="editCode('${key}', \`${data.previewHTML}\`, \`${data.cssCode}\`, ${data.isNew})">✏️ تعديل</button>
-            <button class="delete" onclick="deleteCode('${key}')">🗑 حذف</button>
-          `;
+          const previewDiv = document.createElement("div");
+          previewDiv.innerHTML = `<strong>Preview:</strong><br>${data.previewHTML}`;
+
+          const cssDiv = document.createElement("div");
+          cssDiv.innerHTML = `<strong>CSS:</strong>`;
+          const cssPre = document.createElement("pre");
+          cssPre.className = "code-box";
+          cssPre.textContent = data.cssCode;
+          cssDiv.appendChild(cssPre);
+
+          const newDiv = document.createElement("div");
+          newDiv.innerHTML = `<strong>NEW:</strong> ${data.isNew ? "✅" : "❌"}`;
+
+          const buttonWrapper = document.createElement("div");
+          buttonWrapper.style.marginTop = "10px";
+
+          const editBtn = document.createElement("button");
+          editBtn.className = "edit";
+          editBtn.textContent = "✏️ تعديل";
+          editBtn.onclick = () => editCode(key, data.previewHTML, data.cssCode, data.isNew);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "delete";
+          deleteBtn.textContent = "🗑 حذف";
+          deleteBtn.onclick = () => deleteCode(key);
+
+          buttonWrapper.appendChild(editBtn);
+          buttonWrapper.appendChild(deleteBtn);
+
+          item.appendChild(previewDiv);
+          item.appendChild(cssDiv);
+          item.appendChild(newDiv);
+          item.appendChild(buttonWrapper);
 
           container.appendChild(item);
         });
