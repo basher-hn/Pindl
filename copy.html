@@ -30,7 +30,7 @@
       border-right: 5px solid #00cc88;
       position: relative;
     }
-    .new-badge {
+    .badge {
       position: absolute;
       top: -10px;
       left: -10px;
@@ -46,21 +46,31 @@
       text-align: center;
     }
     pre {
-      background: #f4f4f4;
-      padding: 10px;
-      border-radius: 10px;
+      background: #272727;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 8px;
       overflow-x: auto;
       font-size: 14px;
+      direction: ltr;
     }
-    button {
-      background: #00cc88;
-      border: none;
+    button.copy-btn {
+      background: #28a745;
       color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: bold;
+      border: none;
+      padding: 10px 24px;
+      margin-top: 20px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .not-found {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #777;
     }
   </style>
 </head>
@@ -68,55 +78,57 @@
 
   <div class="header">Css•Basher•Wapka</div>
 
-  <div class="card">
-    <div id="badge" class="new-badge" style="display: none;">NEW</div>
-    <div class="preview" id="preview">جارٍ التحميل...</div>
-    <pre><code id="code">...</code></pre>
-    <button onclick="copyCode()">نسخ الكود</button>
+  <div class="card" id="codeBox">
+    جاري التحميل...
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
   <script>
-    // إعدادات Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
       authDomain: "soudfa-9a558.firebaseapp.com",
       databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
       projectId: "soudfa-9a558",
       storageBucket: "soudfa-9a558.appspot.com",
-      messagingSenderId: "163537173428",
-      appId: "1:163537173428:web:6f6d3f3342290d556d6f7f"
+      messagingSenderId: "889312889458",
+      appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
     };
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // الحصول على ID من الرابط
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
+    const box = document.getElementById("codeBox");
 
-    if (id) {
-      firebase.database().ref("codes/" + id).once("value", (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          document.getElementById("preview").innerHTML = data.preview;
-          document.getElementById("code").innerText = data.code;
-
-          if (data.isNew) {
-            document.getElementById("badge").style.display = "block";
-          }
-        } else {
-          document.getElementById("preview").innerText = "لم يتم العثور على الكود.";
-        }
-      });
+    if (!id) {
+      box.innerHTML = "<div class='not-found'>لم يتم العثور على الكود 😢</div>";
     } else {
-      document.getElementById("preview").innerText = "لم يتم توفير معرّف الكود.";
+      db.ref("codes/" + id).once("value", (snapshot) => {
+        if (!snapshot.exists()) {
+          box.innerHTML = "<div class='not-found'>الكود غير موجود أو تم حذفه ❌</div>";
+          return;
+        }
+
+        const data = snapshot.val();
+        const html = `
+          ${data.isNew ? "<div class='badge'>NEW</div>" : ""}
+          <div class="preview">${data.previewHTML}</div>
+          <pre id="codeText">${data.cssCode}</pre>
+          <button class="copy-btn" onclick="copyCode()">نسخ الكود</button>
+        `;
+
+        box.innerHTML = html;
+      });
     }
 
     function copyCode() {
-      const code = document.getElementById("code").innerText;
+      const code = document.getElementById("codeText").innerText;
       navigator.clipboard.writeText(code).then(() => {
-        alert("✔️ تم نسخ الكود!");
+        alert("✅ تم نسخ الكود!");
       });
     }
   </script>
