@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>كود CSS رهيب – Bashir Design</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>عرض الكود – Bashir Design</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      background: #f2f8ff;
+      background: #e9f1ff;
       font-family: Tahoma, sans-serif;
-      margin: 0;
       padding: 20px;
+      margin: 0;
       color: #222;
     }
     .header {
@@ -42,16 +42,8 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .preview {
-      border: 2px dashed #00cc88;
-      padding: 20px;
       margin-bottom: 15px;
-      border-radius: 10px;
       text-align: center;
-    }
-    .preview p {
-      margin: 0;
-      font-weight: bold;
-      color: #444;
     }
     pre {
       background: #f4f4f4;
@@ -77,25 +69,52 @@
   <div class="header">Css•Basher•Wapka</div>
 
   <div class="card">
-    <div class="new-badge">NEW</div>
-    <div class="preview">
-      <p>هذا مربع معاينة للكود</p>
-    </div>
-    <pre><code>
-.box {
-  padding: 20px;
-  margin: 15px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-    </code></pre>
+    <div id="badge" class="new-badge" style="display: none;">NEW</div>
+    <div class="preview" id="preview">جارٍ التحميل...</div>
+    <pre><code id="code">...</code></pre>
     <button onclick="copyCode()">نسخ الكود</button>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script>
+    // إعدادات Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
+      authDomain: "soudfa-9a558.firebaseapp.com",
+      databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
+      projectId: "soudfa-9a558",
+      storageBucket: "soudfa-9a558.appspot.com",
+      messagingSenderId: "163537173428",
+      appId: "1:163537173428:web:6f6d3f3342290d556d6f7f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // الحصول على ID من الرابط
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (id) {
+      firebase.database().ref("codes/" + id).once("value", (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          document.getElementById("preview").innerHTML = data.preview;
+          document.getElementById("code").innerText = data.code;
+
+          if (data.isNew) {
+            document.getElementById("badge").style.display = "block";
+          }
+        } else {
+          document.getElementById("preview").innerText = "لم يتم العثور على الكود.";
+        }
+      });
+    } else {
+      document.getElementById("preview").innerText = "لم يتم توفير معرّف الكود.";
+    }
+
     function copyCode() {
-      const code = document.querySelector("pre code").innerText;
+      const code = document.getElementById("code").innerText;
       navigator.clipboard.writeText(code).then(() => {
         alert("✔️ تم نسخ الكود!");
       });
