@@ -1,4 +1,36 @@
-<script>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Codes – Bashir Design</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { background: #f2f7ff; font-family: 'Tahoma', sans-serif; margin: 0; padding: 0; }
+    header { background: #d6e6ff; padding: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    header h1 { font-size: 18px; font-weight: bold; color: #333; text-shadow: 1px 1px 2px #fff; margin: 0; }
+    .container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+    .card:hover { transform: scale(1.02); }
+    .preview { padding: 20px; border-radius: 5px; margin-bottom: 10px; background: #f9f9f9; text-align: center; }
+    .btn { display: inline-block; background: #4CAF50; color: white; padding: 8px 14px; border-radius: 5px; text-decoration: none; font-size: 14px; margin-top: 10px; }
+    .badge { position: absolute; top: 10px; left: 10px; background: red; color: white; padding: 2px 6px; font-size: 11px; border-radius: 4px; font-weight: bold; }
+  </style>
+
+  <!-- مكتبات Firebase القديمة -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>CssBasherWapka</h1>
+  </header>
+
+  <div class="container" id="codesContainer">
+    <!-- يتم توليد البطاقات هنا -->
+  </div>
+
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
       authDomain: "soudfa-9a558.firebaseapp.com",
@@ -16,7 +48,7 @@
 
     db.ref("codes").orderByKey().once("value", (snapshot) => {
       const data = snapshot.val();
-      const keys = Object.keys(data).reverse(); // حتى نعرض من الأحدث
+      const keys = Object.keys(data).reverse(); // من الأحدث
 
       keys.forEach((key) => {
         const item = data[key];
@@ -29,7 +61,7 @@
         preview.innerHTML = item.previewHTML;
 
         const btn = document.createElement("a");
-        btn.href = copy.html?id=${key};
+        btn.href = `copy.html?id=${key}`;
         btn.className = "btn";
         btn.innerText = "عرض الكود";
 
@@ -47,5 +79,6 @@
       });
     });
   </script>
+
 </body>
 </html>
