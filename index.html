@@ -27,7 +27,9 @@
   </header>
 
   <div class="container" id="codesContainer">
-    <!-- يتم توليد البطاقات هنا -->
+    <div id="codesContainer" class="container">
+<!-- يتم توليد البطاقات هنا -->
+</div>
   </div>
 
   <script>
@@ -46,37 +48,88 @@
 
     const container = document.getElementById('codesContainer');
 
-    db.ref("codes").orderByKey().once("value", (snapshot) => {
-      const data = snapshot.val();
-      const keys = Object.keys(data).reverse(); // من الأحدث
+    let allCodes = [
+  {
+    key: "test1",
+    data: {
+      previewHTML: "<button style='background:red;color:white;padding:10px;border-radius:8px;'>Test 1</button>",
+      cssCode: "background: red; color: white;",
+      isNew: true
+    }
+  },
+  {
+    key: "test2",
+    data: {
+      previewHTML: "<button style='background:blue;color:white;padding:10px;border-radius:8px;'>Test 2</button>",
+      cssCode: "background: blue; color: white;",
+      isNew: false
+    }
+  },
+  {
+    key: "test3",
+    data: {
+      previewHTML: "<button style='background:green;color:white;padding:10px;border-radius:8px;'>Test 3</button>",
+      cssCode: "background: green; color: white;",
+      isNew: true
+    }
+  }
+];
 
-      keys.forEach((key) => {
-        const item = data[key];
+let currentPage = 1;
+const itemsPerPage = 2;
+const container = document.getElementById('codesContainer');
 
-        const card = document.createElement("div");
-        card.className = "card";
+function renderPage() {
+  container.innerHTML = '';
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageItems = allCodes.slice(start, end);
 
-        const preview = document.createElement("div");
-        preview.className = "preview";
-        preview.innerHTML = item.previewHTML;
+  pageItems.forEach(({ key, data }) => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-        const btn = document.createElement("a");
-        btn.href = `copy.html?id=${key}`;
-        btn.className = "btn";
-        btn.innerText = "عرض الكود";
+    const preview = document.createElement("div");
+    preview.className = "preview";
+    preview.innerHTML = data.previewHTML;
 
-        card.appendChild(preview);
-        card.appendChild(btn);
+    const btn = document.createElement("a");
+    btn.href = `#copy?id=${key}`;
+    btn.className = "btn";
+    btn.innerText = "عرض الكود";
 
-        if (item.isNew) {
-          const badge = document.createElement("div");
-          badge.className = "badge";
-          badge.innerText = "NEW";
-          card.appendChild(badge);
-        }
+    card.appendChild(preview);
+    card.appendChild(btn);
 
-        container.appendChild(card);
-      });
+    if (data.isNew) {
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.innerText = "NEW";
+      card.appendChild(badge);
+    }
+
+    container.appendChild(card);
+  });
+
+  document.getElementById("prevBtn").disabled = currentPage === 1;
+  document.getElementById("nextBtn").disabled = end >= allCodes.length;
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderPage();
+  }
+});
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if ((currentPage * itemsPerPage) < allCodes.length) {
+    currentPage++;
+    renderPage();
+  }
+});
+
+renderPage();
     });
   </script>
 
