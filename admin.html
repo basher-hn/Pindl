@@ -7,34 +7,47 @@
   <style>
     body {
       font-family: Tahoma, sans-serif;
-      background: #f7f7f7;
+      background: #f2f6fa;
       padding: 20px;
       color: #333;
     }
 
+    /* ✅ الشعار */
+    .header-logo {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+      text-shadow: 1px 1px 2px #ccc;
+      margin-bottom: 20px;
+    }
+
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 24px;
     }
 
     .form {
-      background: white;
+      background: #ffffff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       max-width: 600px;
       margin: auto;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     textarea, input[type="text"], select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-top: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      resize: vertical;
+      font-size: 15px;
+      background-color: #fdfdfd;
     }
 
     button {
@@ -44,6 +57,8 @@
       background: #28a745;
       color: white;
       cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     button.edit {
@@ -53,14 +68,15 @@
 
     button.delete {
       background: #dc3545;
+      margin-right: 10px;
     }
 
     .code-item {
       background: #fff;
       padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
     }
 
     .code-list {
@@ -70,17 +86,35 @@
 
     .label {
       font-weight: bold;
+      color: #555;
     }
 
     pre.code-box {
-      background: #f1f1f1;
+      background: #f8f8f8;
       padding: 12px;
       border-radius: 10px;
       overflow-x: auto;
       white-space: pre-wrap;
       font-family: monospace;
-      font-size: 16px;
+      font-size: 15px;
       direction: ltr;
+    }
+
+    .preview-box {
+      background: #f0f8ff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .new-badge {
+      display: inline-block;
+      background: #ff4081;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-right: 5px;
     }
 
     .hidden { display: none; }
@@ -94,6 +128,7 @@
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     #logoutBtn {
       background-color: #f44336;
       margin-top: 10px;
@@ -101,6 +136,8 @@
   </style>
 </head>
 <body>
+
+<div class="header-logo">CssBasherWapka</div>
 
 <!-- ✅ صندوق تسجيل الدخول -->
 <div id="loginBox">
@@ -119,7 +156,7 @@
     <h3>➕ إضافة / تعديل كود</h3>
     <input type="hidden" id="editKey" />
     <label class="label">شكل المعاينة (previewHTML):</label>
-    <textarea id="previewHTML" rows="3" placeholder="مثال: <button style='background: red;'>زر</button>"></textarea>
+    <textarea id="previewHTML" rows="3" placeholder="مثال: &lt;button style='background: red;'&gt;زر&lt;/button&gt;"></textarea>
 
     <label class="label">كود CSS (cssCode):</label>
     <textarea id="cssCode" rows="4" placeholder="مثال: background: red; color: white;"></textarea>
@@ -135,12 +172,11 @@
   </div>
 
   <div class="code-list" id="codesList">
-    <h3 style="text-align:center;">📦 الأكواد الحالية</h3>
-    <!-- الأكواد تنعرض هنا -->
+    <h3 class="center">📦 الأكواد الحالية</h3>
   </div>
 </div>
 
-<!-- ✅ Firebase Auth + Database -->
+<!-- ✅ Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -160,7 +196,6 @@
   const auth = firebase.auth();
   const db = firebase.database();
 
-  // تسجيل الدخول
   function login() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -177,12 +212,10 @@
       });
   }
 
-  // تسجيل الخروج
   function logout() {
     auth.signOut().then(() => location.reload());
   }
 
-  // التحقق من الحالة
   auth.onAuthStateChanged(user => {
     if (user) {
       document.getElementById("loginBox").classList.add("hidden");
@@ -234,17 +267,16 @@
         item.className = "code-item";
 
         const previewDiv = document.createElement("div");
-        previewDiv.innerHTML = `<strong>Preview:</strong><br>${data.previewHTML}`;
+        previewDiv.className = "preview-box";
+        previewDiv.innerHTML = `${data.previewHTML}`;
 
         const cssDiv = document.createElement("div");
-        cssDiv.innerHTML = `<strong>CSS:</strong>`;
         const cssPre = document.createElement("pre");
         cssPre.className = "code-box";
         cssPre.textContent = data.cssCode;
         cssDiv.appendChild(cssPre);
 
-        const newDiv = document.createElement("div");
-        newDiv.innerHTML = `<strong>NEW:</strong> ${data.isNew ? "✅" : "❌"}`;
+        const badge = data.isNew ? `<span class="new-badge">NEW</span>` : "";
 
         const buttonWrapper = document.createElement("div");
         buttonWrapper.style.marginTop = "10px";
@@ -259,12 +291,11 @@
         deleteBtn.textContent = "🗑 حذف";
         deleteBtn.onclick = () => deleteCode(key);
 
-        buttonWrapper.appendChild(editBtn);
-        buttonWrapper.appendChild(deleteBtn);
-
+        item.innerHTML = badge;
         item.appendChild(previewDiv);
         item.appendChild(cssDiv);
-        item.appendChild(newDiv);
+        buttonWrapper.appendChild(editBtn);
+        buttonWrapper.appendChild(deleteBtn);
         item.appendChild(buttonWrapper);
 
         container.appendChild(item);
