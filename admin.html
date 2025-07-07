@@ -6,85 +6,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Tahoma, sans-serif;
-      background: #f7f7f7;
+      font-family: 'Cairo', sans-serif;
+      background: #ecf0f3;
+      margin: 0;
       padding: 20px;
-      color: #333;
+      color: #000;
     }
 
-    h1 {
+    .header {
+      background: #ffffff;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
       text-align: center;
-      margin-bottom: 30px;
+      padding: 16px;
+      margin-bottom: 20px;
     }
 
-    
-.form {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    .logo-circle {
+      background: #00b894;
+      color: #fff;
+      font-weight: bold;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px auto;
+      font-size: 22px;
+    }
 
+    .form {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+      margin: 0 auto 20px auto;
+      max-width: 700px;
+    }
 
-    textarea, input[type="text"], select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      border-radius: 8px;
+    textarea,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 90%;
+      padding: 14px;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      resize: vertical;
+      font-size: 16px;
+      background: #f9f9f9;
     }
 
     button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #28a745;
-      color: white;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
+      background: white;
+      color: #000;
+      border: 2px solid #00b894;
     }
 
-    button.edit {
-      background: #007bff;
-      margin-left: 10px;
+    button.right-shadow {
+      box-shadow: 4px 0 0 #00b894;
     }
 
-    button.delete {
-      background: #dc3545;
+    button.left-shadow {
+      box-shadow: -4px 0 0 #00b894;
     }
 
     .code-item {
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-      margin-bottom: 15px;
+      background: #ffffff;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+      margin-bottom: 20px;
+      padding: 16px;
+    }
+
+    .code-item * {
+      box-sizing: border-box;
     }
 
     .code-list {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
     }
 
     .label {
       font-weight: bold;
+      color: #2d3436;
+      margin-bottom: 4px;
     }
 
     pre.code-box {
       background: #f1f1f1;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 14px;
+      border-radius: 8px;
       overflow-x: auto;
       white-space: pre-wrap;
       font-family: monospace;
-      font-size: 16px;
+      font-size: 15px;
       direction: ltr;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     .hidden { display: none; }
@@ -93,19 +119,24 @@
     #loginBox {
       max-width: 400px;
       margin: 100px auto;
-      background: white;
+      background: #ffffff;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
     }
-    #logoutBtn {
-      background-color: #f44336;
-      margin-top: 10px;
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
     }
-  </style>
+</style>
 </head>
-<body>
-<div style="text-align:center; font-weight:bold; font-size:18px; color:#444; text-shadow:1px 1px 2px #aaa; margin-bottom: 10px;">Css•Basher•Wapka</div>
+<body><div class="header">
+  <div style="font-weight:bold; font-size:20px;">Css•<span style='color:#00b894'>Basher</span>•Wapka</div>
+  <div class="logo-circle">C•B•W</div>
+</div>
+
 
 <!-- ✅ صندوق تسجيل الدخول -->
 <div id="loginBox">
@@ -118,7 +149,7 @@
 
 <!-- ✅ لوحة تحكم الأدمن -->
 <div id="adminPanel" class="hidden">
-  <h1>لوحة التحكم – Bashir Design 🎨</h1>
+  
 
   <div class="form">
     <h3>➕ إضافة / تعديل كود</h3>
@@ -137,8 +168,18 @@
 
     
 <div style="display: flex; justify-content: space-between; gap: 10px; width: 100%;">
-  <button onclick="logout()" id="logoutBtn" style="background-color:#f44336; color:white; padding:8px 16px; font-size:14px; font-weight:bold; border:none; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">خروج</button>
-  <button onclick="saveCode()" style="background-color:#28a745; color:white; padding:8px 16px; font-size:14px; font-weight:bold; border:none; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">حفظ</button>
+  <button onclick="logout()" id="logoutBtn" style="max-width: 400px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 6px 18px 6px 18px;
+      border-radius: 10px;
+      border-left: 4px solid #00b894;">خروج</button>
+  <button onclick="saveCode()" style="max-width: 400px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 6px 18px 6px 18px;
+      border-radius: 10px;
+      border-right: 4px solid #00b894;">حفظ</button>
 </div>
 
   </div>
