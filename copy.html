@@ -1,65 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>عرض الكود VIP – Css Basher</title>
+  <title>عرض الكود VIP – Green Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* الستايل الملكي VIP 3D Extreme */
+    /* الستايل الأخضر VIP 3D المطور لصفحة العرض */
+    :root {
+      --primary-green: #00b894;
+      --bg-color: #f0f3f7;
+      --shadow-light: #ffffff;
+      --shadow-dark: #d1d9e6;
+    }
+
     body {
-      background: #0a0a0a;
+      background: var(--bg-color);
       font-family: 'Cairo', sans-serif;
-      padding: 20px;
+      padding: 15px;
       margin: 0;
-      color: #fff;
+      color: #333;
       text-align: center;
     }
 
-    .header-section {
-      background: #111;
-      padding: 30px 15px;
-      border-radius: 8px; /* التزام بـ 8px */
-      border-bottom: 3px solid #3498db;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    .main-header {
+      background: var(--bg-color);
+      padding: 25px 15px;
+      border-radius: 12px;
       margin-bottom: 30px;
-    }
-
-    .main-title {
-      font-size: 26px;
-      font-weight: 900;
-      color: #fff;
-      margin: 0 0 10px 0;
-      text-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+      box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+      border-bottom: 4px solid var(--primary-green);
     }
 
     .logo-circle {
-      background: #000;
-      color: #3498db;
-      font-size: 24px;
+      background: var(--primary-green);
+      color: white;
+      font-size: 22px;
       font-weight: bold;
-      width: 90px;
-      height: 90px;
+      width: 85px;
+      height: 85px;
       margin: 10px auto;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid #3498db;
-      box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+      box-shadow: 5px 5px 15px rgba(0, 184, 148, 0.3);
     }
 
     .card-vip {
-      background: #111;
-      border-radius: 8px;
-      box-shadow: 15px 15px 30px #050505, -10px -10px 30px #1a1a1a;
-      padding: 30px 20px;
+      background: var(--bg-color);
+      border-radius: 15px;
+      box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light);
+      padding: 25px;
       margin: auto;
       max-width: 500px;
-      border-right: 5px solid #3498db;
+      border-right: 6px solid var(--primary-green);
       position: relative;
     }
 
@@ -73,15 +70,15 @@
       padding: 5px 12px;
       border-radius: 4px;
       font-weight: bold;
-      box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+      box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
     }
 
     .preview-box {
       margin-bottom: 25px;
       padding: 20px;
-      background: #080808;
-      border-radius: 8px;
-      box-shadow: inset 4px 4px 10px #000;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: inset 4px 4px 10px var(--shadow-dark);
       min-height: 80px;
       display: flex;
       justify-content: center;
@@ -89,66 +86,57 @@
     }
 
     pre {
-      background: #050505;
-      color: #3498db;
+      background: #2d3436;
+      color: var(--primary-green);
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow-x: auto;
       font-size: 14px;
       direction: ltr;
       text-align: left;
-      border: 1px solid #1a1a1a;
-      box-shadow: inset 3px 3px 10px #000;
-      font-family: 'Courier New', Courier, monospace;
+      box-shadow: inset 5px 5px 15px #000;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
-    /* زر النسخ المتطور */
-    button.copy-btn-vip {
-      background: #111;
-      color: #3498db;
-      border: 1px solid #3498db;
-      padding: 15px 30px;
+    .copy-btn-vip {
+      background: var(--primary-green);
+      color: #fff;
+      border: none;
+      padding: 16px;
       margin-top: 25px;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 16px;
       font-weight: 900;
       width: 100%;
-      box-shadow: 4px 4px 10px #080808;
-      transition: all 0.3s ease;
-      font-family: 'Cairo', sans-serif;
+      box-shadow: 6px 6px 15px var(--shadow-dark);
+      transition: 0.3s;
+      font-family: 'Cairo';
     }
 
-    button.copy-btn-vip:hover {
-      background: #3498db;
-      color: #fff;
-      box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
-    }
-
-    button.copy-btn-vip:active {
+    .copy-btn-vip:active {
       transform: scale(0.97);
+      box-shadow: inset 3px 3px 8px rgba(0,0,0,0.2);
     }
 
-    /* كلاس التغيير عند النسخ */
-    button.copied {
-      background: #27ae60 !important;
-      border-color: #27ae60 !important;
-      color: #fff !important;
+    .copy-btn-vip.copied {
+      background: #2ecc71;
     }
 
     .not-found-vip {
       text-align: center;
       padding: 40px;
-      font-size: 18px;
-      color: #e74c3c;
+      color: #777;
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-  <div class="header-section">
-    <h1 class="main-title">
-      Css•<span style="color:#3498db">Basher</span>•Wapka
+  <div class="main-header">
+    <h1 style="font-size: 26px; font-weight: 900; color: #222; margin-bottom: 10px;">
+      Css•<span style="color:var(--primary-green)">Basher</span>•Wapka
     </h1>
     <div class="logo-circle">C•B•W</div>
   </div>
@@ -161,6 +149,11 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
+    /* 🛡️ حماية CoOoBRA VIP */
+    document.onkeydown = function(e) {
+      if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
+    };
+
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
       authDomain: "soudfa-9a558.firebaseapp.com",
@@ -204,32 +197,17 @@
       const btn = document.getElementById("copyBtn");
       
       navigator.clipboard.writeText(code).then(() => {
-        // تغيير شكل الزر بدلاً من الـ Alert
-        const originalText = btn.innerHTML;
-        btn.innerHTML = `<i class="fa fa-check"></i> تم النسخ بنجاح!`;
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `<i class="fa fa-check"></i> تم النسخ!`;
         btn.classList.add("copied");
 
-        // إرجاع الزر لحالته الطبيعية بعد ثانيتين
         setTimeout(() => {
-          btn.innerHTML = originalText;
+          btn.innerHTML = originalHTML;
           btn.classList.remove("copied");
         }, 2000);
       });
     }
   </script>
-<script>
-  // قفل الكليك الأيمن
-  document.addEventListener('contextmenu', e => e.preventDefault());
-
-  // قفل أزرار الكيبورد الخاصة بالمبرمجين (F12, Ctrl+U, Ctrl+Shift+I)
-  document.onkeydown = function(e) {
-    if (e.keyCode == 123 || 
-       (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || 
-       (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-      return false;
-    }
-  };
-</script>
 
 </body>
 </html>
