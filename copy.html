@@ -1,115 +1,162 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>عرض الكود – Bashir Design</title>
+  <title>عرض الكود VIP – Css Basher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+  
   <style>
+    /* الستايل الملكي VIP 3D Extreme */
     body {
-      background: #e9f1ff;
-      font-family: Tahoma, sans-serif;
+      background: #0a0a0a;
+      font-family: 'Cairo', sans-serif;
       padding: 20px;
       margin: 0;
-      color: #222;
-    }
-    .header {
+      color: #fff;
       text-align: center;
-      font-weight: bold;
-      font-size: 20px;
-      color: #0077cc;
-      text-shadow: 1px 1px 2px #ccc;
-      margin-bottom: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: auto;
-      max-width: 500px;
-      border-right: 5px solid #00cc88;
-      position: relative;
-    }
-    .badge {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      background: #ff3366;
-      color: white;
-      font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .preview {
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    pre {
-      background: #272727;
-      color: #0f0;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 14px;
-      direction: ltr;
-    }
-    button.copy-btn {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      margin-top: 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .not-found {
-      text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      color: #777;
     }
 
-        h1 {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    .header-section {
+      background: #111;
+      padding: 30px 15px;
+      border-radius: 8px; /* التزام بـ 8px */
+      border-bottom: 3px solid #3498db;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       margin-bottom: 30px;
-        }
+    }
 
-        .logo-circle {
-      background: #00b894;
-      color: white;
+    .main-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 10px 0;
+      text-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+    }
+
+    .logo-circle {
+      background: #000;
+      color: #3498db;
       font-size: 24px;
       font-weight: bold;
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       margin: 10px auto;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-        }
+      border: 2px solid #3498db;
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .card-vip {
+      background: #111;
+      border-radius: 8px;
+      box-shadow: 15px 15px 30px #050505, -10px -10px 30px #1a1a1a;
+      padding: 30px 20px;
+      margin: auto;
+      max-width: 500px;
+      border-right: 5px solid #3498db;
+      position: relative;
+    }
+
+    .badge-vip {
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background: #e74c3c;
+      color: white;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    }
+
+    .preview-box {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #080808;
+      border-radius: 8px;
+      box-shadow: inset 4px 4px 10px #000;
+      min-height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    pre {
+      background: #050505;
+      color: #3498db;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 14px;
+      direction: ltr;
+      text-align: left;
+      border: 1px solid #1a1a1a;
+      box-shadow: inset 3px 3px 10px #000;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* زر النسخ المتطور */
+    button.copy-btn-vip {
+      background: #111;
+      color: #3498db;
+      border: 1px solid #3498db;
+      padding: 15px 30px;
+      margin-top: 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 900;
+      width: 100%;
+      box-shadow: 4px 4px 10px #080808;
+      transition: all 0.3s ease;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    button.copy-btn-vip:hover {
+      background: #3498db;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+    }
+
+    button.copy-btn-vip:active {
+      transform: scale(0.97);
+    }
+
+    /* كلاس التغيير عند النسخ */
+    button.copied {
+      background: #27ae60 !important;
+      border-color: #27ae60 !important;
+      color: #fff !important;
+    }
+
+    .not-found-vip {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #e74c3c;
+    }
   </style>
 </head>
 <body>
 
-  <div style="margin-bottom: 10px;">
-    <h1 style="font-size: 26px; font-weight: bold; text-align: center; color: #000; margin-bottom: 10px;">
-      Css•<span style="color:#00b894">Basher</span>•Wapka
+  <div class="header-section">
+    <h1 class="main-title">
+      Css•<span style="color:#3498db">Basher</span>•Wapka
     </h1>
     <div class="logo-circle">C•B•W</div>
   </div>
 
-  <div class="card" id="codeBox">
-    جاري التحميل...
+  <div class="card-vip" id="codeBox">
+    <i class="fa fa-spinner fa-spin"></i> جاري التحميل...
   </div>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -132,30 +179,41 @@
     const box = document.getElementById("codeBox");
 
     if (!id) {
-      box.innerHTML = "<div class='not-found'>لم يتم العثور على الكود 😢</div>";
+      box.innerHTML = "<div class='not-found-vip'>لم يتم العثور على الكود 😢</div>";
     } else {
       db.ref("codes/" + id).once("value", (snapshot) => {
         if (!snapshot.exists()) {
-          box.innerHTML = "<div class='not-found'>الكود غير موجود أو تم حذفه ❌</div>";
+          box.innerHTML = "<div class='not-found-vip'>الكود غير موجود أو تم حذفه ❌</div>";
           return;
         }
 
         const data = snapshot.val();
-        const html = `
-          ${data.isNew ? "<div class='badge'>NEW</div>" : ""}
-          <div class="preview">${data.previewHTML}</div>
+        box.innerHTML = `
+          ${data.isNew ? "<div class='badge-vip'>NEW</div>" : ""}
+          <div class="preview-box">${data.previewHTML}</div>
           <pre id="codeText">${data.cssCode}</pre>
-          <button class="copy-btn" onclick="copyCode()">نسخ الكود</button>
+          <button class="copy-btn-vip" id="copyBtn" onclick="copyCode()">
+            <i class="fa fa-copy"></i> نسخ الكود
+          </button>
         `;
-
-        box.innerHTML = html;
       });
     }
 
     function copyCode() {
       const code = document.getElementById("codeText").innerText;
+      const btn = document.getElementById("copyBtn");
+      
       navigator.clipboard.writeText(code).then(() => {
-        alert("✅ تم نسخ الكود!");
+        // تغيير شكل الزر بدلاً من الـ Alert
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<i class="fa fa-check"></i> تم النسخ بنجاح!`;
+        btn.classList.add("copied");
+
+        // إرجاع الزر لحالته الطبيعية بعد ثانيتين
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove("copied");
+        }, 2000);
       });
     }
   </script>
