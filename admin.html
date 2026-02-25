@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* الستايل الأخضر VIP 3D المطور */
     :root {
       --primary-green: #00b894;
       --bg-color: #f0f3f7;
@@ -22,9 +21,9 @@
       margin: 0;
       padding: 15px;
       color: #2d3436;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* هيدر 3D */
     .header {
       background: var(--bg-color);
       border-radius: 12px;
@@ -38,19 +37,18 @@
     .logo-circle {
       background: var(--primary-green);
       color: #fff;
-      width: 75px;
-      height: 75px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 0 auto 10px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 900;
-      box-shadow: 4px 4px 10px rgba(0, 184, 148, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 184, 148, 0.3);
     }
 
-    /* فورم التحكم المحفور */
     .form {
       background: var(--bg-color);
       padding: 20px;
@@ -58,14 +56,6 @@
       margin-bottom: 25px;
       box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
       border-right: 5px solid var(--primary-green);
-    }
-
-    .label {
-      font-weight: bold;
-      color: var(--primary-green);
-      margin-bottom: 8px;
-      display: block;
-      font-size: 14px;
     }
 
     textarea, input, select {
@@ -82,43 +72,24 @@
       font-family: 'Cairo';
     }
 
-    /* أزرار VIP بارزة */
-    .btn-row {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .btn-row { display: flex; gap: 10px; margin-top: 10px; }
 
     button {
       flex: 1;
       padding: 15px;
       border-radius: 10px;
       font-weight: 900;
-      font-size: 15px;
       cursor: pointer;
       font-family: 'Cairo';
-      transition: 0.3s ease;
       border: none;
+      transition: 0.2s;
     }
 
-    .btn-save {
-      background: var(--primary-green);
-      color: white;
-      box-shadow: 4px 4px 10px var(--shadow-dark);
-    }
+    .btn-save { background: var(--primary-green); color: white; box-shadow: 4px 4px 10px var(--shadow-dark); }
+    .btn-logout { background: var(--bg-color); color: #e74c3c; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+    
+    button:active { transform: scale(0.96); box-shadow: inset 2px 2px 5px var(--shadow-dark); }
 
-    .btn-logout {
-      background: var(--bg-color);
-      color: #e74c3c;
-      box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
-    }
-
-    button:active {
-      transform: scale(0.95);
-      box-shadow: inset 3px 3px 6px var(--shadow-dark);
-    }
-
-    /* كروت الأكواد الحالية */
     .code-item {
       background: var(--bg-color);
       border-radius: 12px;
@@ -126,6 +97,7 @@
       padding: 18px;
       box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
       border-right: 4px solid var(--primary-green);
+      overflow: hidden; /* يمنع خروج المحتوى */
     }
 
     pre.code-box {
@@ -135,16 +107,19 @@
       border-radius: 8px;
       font-size: 13px;
       direction: ltr;
+      white-space: pre-wrap; /* يخلي الكود ينزل سطر جديد وما يطلع بره المربع */
+      word-break: break-all;
       box-shadow: inset 4px 4px 10px #000;
+      margin: 10px 0;
     }
 
     #loginBox {
-      max-width: 380px;
+      max-width: 350px;
       margin: 80px auto;
       background: var(--bg-color);
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light);
+      box-shadow: 15px 15px 30px var(--shadow-dark);
       text-align: center;
     }
 
@@ -154,44 +129,33 @@
 <body oncontextmenu="return false;">
 
 <div class="header">
-  <div style="font-weight:900; font-size:22px; color:#333;">Css•<span style='color:var(--primary-green)'>Basher</span>•Wapka</div>
+  <div style="font-weight:900; font-size:20px;">Css•<span style='color:var(--primary-green)'>Basher</span>•Wapka</div>
   <div class="logo-circle">C•B•W</div>
 </div>
 
 <div id="loginBox">
-  <h2 style="color:var(--primary-green); margin-top:0;">دخول القائد</h2>
-  <div id="loginError" style="color:red; font-size:12px; margin-bottom:10px;"></div>
+  <h3 style="color:var(--primary-green)">دخول القائد</h3>
   <input type="email" id="email" placeholder="البريد الإلكتروني">
   <input type="password" id="password" placeholder="كلمة المرور">
-  <button class="btn-save" style="width:100%" onclick="login()">دخول للمنصة</button>
+  <button class="btn-save" style="width:100%" onclick="login()">دخول</button>
 </div>
 
 <div id="adminPanel" class="hidden">
   <div class="form">
-    <h3><i class="fa fa-plus-circle" style="color:var(--primary-green)"></i> إضافة كود جديد</h3>
-    <input type="hidden" id="editKey" />
-    
-    <label class="label">كود المعاينة (HTML):</label>
-    <input type="text" id="previewHTML" placeholder="مثلاً: <button>زر</button>">
-
-    <label class="label">كود التنسيق (CSS):</label>
-    <textarea id="cssCode" rows="5" placeholder="ضع كود الـ CSS هنا..."></textarea>
-
-    <label class="label">حالة الكود:</label>
+    <h3 id="formTitle" style="color:var(--primary-green)">➕ إضافة كود جديد</h3>
+    <input type="hidden" id="editKey">
+    <input type="text" id="previewHTML" placeholder="كود HTML للمعاينة">
+    <textarea id="cssCode" rows="5" placeholder="كود CSS"></textarea>
     <select id="isNew">
-      <option value="true">✅ جديد (New)</option>
+      <option value="true">✅ جديد</option>
       <option value="false">❌ عادي</option>
     </select>
-
     <div class="btn-row">
       <button class="btn-logout" onclick="logout()">خروج</button>
       <button class="btn-save" onclick="saveCode()">حفظ البيانات</button>
     </div>
   </div>
-
-  <div id="codesList">
-    <h3 style="text-align:center; color:var(--primary-green);">📦 أرشيف الأكواد</h3>
-  </div>
+  <div id="codesList"></div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -199,11 +163,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 <script>
-  /* 🛡️ حماية CoOoBRA VIP */
-  document.onkeydown = function(e) {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
-  };
-
   const firebaseConfig = {
     apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
     authDomain: "soudfa-9a558.firebaseapp.com",
@@ -219,7 +178,7 @@
 
   function login() {
     auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
-      .catch(() => document.getElementById("loginError").innerText = "❌ خطأ في البيانات");
+      .catch(() => alert("خطأ بالبيانات"));
   }
 
   function logout() { auth.signOut().then(() => location.reload()); }
@@ -239,9 +198,9 @@
       cssCode: document.getElementById("cssCode").value,
       isNew: document.getElementById("isNew").value === "true"
     };
-    if(!data.previewHTML || !data.cssCode) return alert("املأ الحقول ضلعي");
+    if(!data.previewHTML || !data.cssCode) return alert("املأ الحقول");
     const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-    ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ بنجاح ✅"); });
+    ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ ✅"); });
   }
 
   function loadCodes() {
@@ -249,30 +208,40 @@
       const list = document.getElementById("codesList"); list.innerHTML = "";
       snapshot.forEach(child => {
         const d = child.val();
-        const item = document.createElement("div");
-        item.className = "code-item";
-        item.innerHTML = `
+        const div = document.createElement("div");
+        div.className = "code-item";
+        div.innerHTML = `
           <div style="margin-bottom:10px">${d.previewHTML}</div>
           <pre class="code-box">${d.cssCode}</pre>
           <div class="btn-row">
-            <button style="background:#007bff; color:#fff" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
-            <button style="background:#dc3545; color:#fff" onclick="deleteCode('${child.key}')">حذف</button>
+            <button style="background:var(--primary-green); color:#fff" onclick="triggerEdit('${child.key}')">تعديل</button>
+            <button style="background:#e74c3c; color:#fff" onclick="deleteCode('${child.key}')">حذف</button>
           </div>`;
-        list.appendChild(item);
+        list.appendChild(div);
       });
     });
   }
 
-  function editCode(key, html, css, isNew) {
-    document.getElementById("editKey").value = key;
-    document.getElementById("previewHTML").value = html;
-    document.getElementById("cssCode").value = css;
-    document.getElementById("isNew").value = isNew ? "true" : "false";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // وظيفة التعديل المضمونة 100%
+  function triggerEdit(key) {
+    db.ref("codes/" + key).once("value", snap => {
+      const d = snap.val();
+      document.getElementById("editKey").value = key;
+      document.getElementById("previewHTML").value = d.previewHTML;
+      document.getElementById("cssCode").value = d.cssCode;
+      document.getElementById("isNew").value = d.isNew ? "true" : "false";
+      document.getElementById("formTitle").innerText = "✏️ تعديل الكود";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   function deleteCode(key) { if(confirm("حذف؟")) db.ref("codes/"+key).remove(); }
-  function resetForm() { document.getElementById("editKey").value = ""; document.getElementById("previewHTML").value = ""; document.getElementById("cssCode").value = ""; }
+  function resetForm() {
+    document.getElementById("editKey").value = "";
+    document.getElementById("previewHTML").value = "";
+    document.getElementById("cssCode").value = "";
+    document.getElementById("formTitle").innerText = "➕ إضافة كود جديد";
+  }
 </script>
 </body>
 </html>
