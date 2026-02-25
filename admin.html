@@ -2,206 +2,217 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Dashboard Ultra VIP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم Ultra VIP – للهاتف</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* التصميم الزجاجي الخرافي - Ultra Futuristic */
+    /* تصميم متطور مخصص للمبايل - Ultra Glass 3D */
     :root {
       --primary: #3498db;
-      --bg: #050505;
-      --card-bg: rgba(20, 20, 20, 0.7);
+      --accent: #2ecc71;
+      --bg: #080808;
+      --glass: rgba(25, 25, 25, 0.85);
     }
 
     body {
       background: var(--bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 20%);
       font-family: 'Cairo', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 10px;
       color: #fff;
-      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* هيدر النيون العائم */
-    .header-ultra {
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
+    /* هيدر ذكي للمبايل */
+    .header-mobile {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 30px;
-      margin-bottom: 30px;
+      padding: 20px 10px;
       text-align: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(52,152,219,0.1);
-      border-bottom: 2px solid var(--primary);
+      margin-bottom: 20px;
+      border-bottom: 3px solid var(--primary);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
     .logo-glow {
-      width: 90px;
-      height: 90px;
+      width: 70px;
+      height: 70px;
       background: #000;
       border-radius: 50%;
-      margin: 0 auto 15px;
+      margin: 0 auto 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 2px solid var(--primary);
-      box-shadow: 0 0 25px var(--primary), inset 0 0 15px var(--primary);
-      font-size: 24px;
+      box-shadow: 0 0 15px var(--primary);
+      font-size: 18px;
       font-weight: 900;
-      color: #fff;
-      animation: pulse-glow 2s infinite;
+      animation: pulse 2s infinite;
     }
 
-    @keyframes pulse-glow {
-      0% { box-shadow: 0 0 15px var(--primary); }
-      50% { box-shadow: 0 0 35px var(--primary); }
-      100% { box-shadow: 0 0 15px var(--primary); }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px var(--primary); }
+      50% { box-shadow: 0 0 20px var(--primary); }
+      100% { box-shadow: 0 0 5px var(--primary); }
     }
 
-    /* فورم التحكم المحفور */
-    .ultra-form {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 30px;
+    /* فورم التحكم - مرونة كاملة */
+    .main-container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .ultra-card {
+      background: var(--glass);
+      padding: 20px;
       border-radius: 8px;
-      max-width: 750px;
-      margin: 0 auto 40px;
-      border-right: 6px solid var(--primary);
-      box-shadow: 15px 15px 30px #000;
+      margin-bottom: 20px;
+      border-right: 4px solid var(--primary);
+      box-shadow: 10px 10px 20px rgba(0,0,0,0.4);
     }
 
-    .input-group {
-      position: relative;
-      margin-bottom: 25px;
+    .field-group {
+      margin-bottom: 15px;
     }
 
-    .input-group label {
+    label {
       display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
       color: var(--primary);
       font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 14px;
     }
 
     .ultra-input {
       width: 100%;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 16px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #222;
+      padding: 12px;
       border-radius: 8px;
       color: #fff;
-      font-size: 16px;
-      box-shadow: inset 4px 4px 10px #000;
+      font-size: 15px;
+      box-shadow: inset 2px 2px 8px #000;
       box-sizing: border-box;
-      transition: 0.4s;
+      outline: none;
+      font-family: 'Cairo';
     }
 
     .ultra-input:focus {
       border-color: var(--primary);
-      box-shadow: inset 2px 2px 5px #000, 0 0 15px rgba(52,152,219,0.2);
     }
 
-    /* أزرار النيون 3D */
-    .btn-ultra {
-      padding: 15px 35px;
+    /* أزرار ضخمة سهلة اللمس */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn-main {
+      flex: 1;
+      padding: 15px;
       border-radius: 8px;
       border: none;
       font-weight: 900;
       cursor: pointer;
-      transition: 0.4s;
       font-family: 'Cairo';
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 14px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    .btn-save {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(52,152,219,0.4);
-    }
-
-    .btn-save:hover {
-      box-shadow: 0 0 40px var(--primary);
-      transform: scale(1.05);
-    }
+    .btn-save { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(52,152,219,0.3); }
+    .btn-logout { background: #1a1a1a; color: #e74c3c; border: 1px solid #e74c3c; }
+    
+    .btn-main:active { transform: scale(0.95); box-shadow: inset 2px 2px 5px #000; }
 
     /* كروت الأكواد المرفوعة */
-    .code-card-ultra {
-      background: rgba(15, 15, 15, 0.8);
+    .item-card {
+      background: #111;
+      padding: 15px;
       border-radius: 8px;
-      margin-bottom: 25px;
-      padding: 25px;
-      border: 1px solid rgba(255,255,255,0.02);
-      box-shadow: 10px 10px 25px #000;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #1a1a1a;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     }
 
-    .code-display {
-      background: #000;
+    pre {
+      background: #050505;
+      padding: 10px;
       border-radius: 8px;
-      padding: 15px;
-      border: 1px solid #111;
-      box-shadow: inset 4px 4px 12px #000;
+      font-size: 12px;
       color: var(--primary);
-      font-family: monospace;
-      font-size: 13px;
       overflow-x: auto;
+      border: 1px solid #111;
+      direction: ltr;
     }
 
     .hidden { display: none; }
+
+    /* تحسينات المبايل */
+    @media (max-width: 600px) {
+      .header-mobile h1 { font-size: 20px; }
+      .ultra-card { padding: 15px; }
+    }
   </style>
 </head>
-<body oncontextmenu="return false;"> <div class="header-ultra">
+<body oncontextmenu="return false;">
+
+  <div class="header-mobile">
     <div class="logo-glow">C•B•W</div>
-    <h1 style="margin:0; font-weight:900; letter-spacing:2px;">DASHBOARD <span style="color:var(--primary)">ULTRA VIP</span></h1>
+    <h1 style="margin:0; font-size: 22px;">ADMIN <span style="color:var(--primary)">ULTRA</span></h1>
   </div>
 
-  <div id="loginBox" class="ultra-form" style="max-width:400px; text-align:center;">
-    <h2 style="color:var(--primary)">ACCESS DENIED</h2>
-    <p style="font-size:12px; opacity:0.6;">يرجى إثبات هويتك للدخول إلى غرفة العمليات</p>
-    <div id="loginError" style="color:#ff4757; font-size:12px; margin-bottom:10px;"></div>
-    <input type="email" id="email" class="ultra-input" placeholder="البريد الإلكتروني" style="margin-bottom:15px;">
-    <input type="password" id="password" class="ultra-input" placeholder="كلمة المرور" style="margin-bottom:20px;">
-    <button class="btn-ultra btn-save" onclick="login()">دخول القائد</button>
-  </div>
+  <div class="main-container">
+    
+    <div id="loginBox" class="ultra-card" style="max-width:350px; margin:auto; border-right:none; border-bottom:4px solid var(--primary);">
+      <h3 style="text-align:center;">تسجيل دخول الآدمن</h3>
+      <div id="loginError" style="color:#e74c3c; text-align:center; font-size:12px; margin-bottom:10px;"></div>
+      <input type="email" id="email" class="ultra-input" placeholder="البريد الإلكتروني" style="margin-bottom:15px;">
+      <input type="password" id="password" class="ultra-input" placeholder="كلمة المرور">
+      <button class="btn-main btn-save" style="margin-top:20px; width:100%;" onclick="login()">دخول للمنصة <i class="fa fa-sign-in-alt"></i></button>
+    </div>
 
-  <div id="adminPanel" class="hidden">
-    <div class="ultra-form">
-      <h3><i class="fa fa-terminal" style="margin-left:10px;"></i> إضافة كود جديد</h3>
-      <input type="hidden" id="editKey">
-      
-      <div class="input-group">
-        <label>المعاينة الذكية (HTML):</label>
-        <input type="text" id="previewHTML" class="ultra-input" placeholder="أدخل كود المعاينة هنا...">
-      </div>
+    <div id="adminPanel" class="hidden">
+      <div class="ultra-card">
+        <h3><i class="fa fa-plus-circle"></i> إضافة كود جديد</h3>
+        <input type="hidden" id="editKey">
+        
+        <div class="field-group">
+          <label>كود المعاينة (HTML):</label>
+          <input type="text" id="previewHTML" class="ultra-input" placeholder="مثلاً: <button>زر</button>">
+        </div>
 
-      <div class="input-group">
-        <label>كود الـ CSS الملكي:</label>
-        <textarea id="cssCode" class="ultra-input" rows="6" placeholder="اكتب كود الـ CSS هنا..."></textarea>
-      </div>
+        <div class="field-group">
+          <label>تنسيق الـ CSS:</label>
+          <textarea id="cssCode" class="ultra-input" rows="5" placeholder="ضع كود CSS هنا..."></textarea>
+        </div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <select id="isNew" class="ultra-input" style="width:150px; margin:0;">
-          <option value="true">✅ جديد</option>
-          <option value="false">❌ قديم</option>
-        </select>
-        <div style="display:flex; gap:10px;">
-          <button class="btn-ultra" style="background:#111; color:#ff4757; border:1px solid #ff4757;" onclick="logout()">خروج</button>
-          <button class="btn-ultra btn-save" onclick="saveCode()">حفظ في السيرفر</button>
+        <div class="field-group">
+          <label>حالة الكود:</label>
+          <select id="isNew" class="ultra-input">
+            <option value="true">✅ جديد (New)</option>
+            <option value="false">❌ عادي</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-main btn-logout" onclick="logout()">خروج <i class="fa fa-power-off"></i></button>
+          <button class="btn-main btn-save" onclick="saveCode()">حفظ <i class="fa fa-save"></i></button>
         </div>
       </div>
+
+      <div id="codesList">
+        <h3 style="text-align:center; color:var(--primary);"><i class="fa fa-database"></i> الأكواد المرفوعة</h3>
+      </div>
     </div>
 
-    <div id="codesList" style="max-width:750px; margin:0 auto;">
-      <h3 style="text-align:center; color:var(--primary); margin-bottom:30px;">ARCHIVE DATABASE</h3>
-    </div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -209,11 +220,11 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
-    /* 🛡️ درع الحماية VIP - تم التشفير والدمج */
+    /* 🛡️ حماية الكود - قفل الاختصارات */
     document.onkeydown = function(e) {
       if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
     };
-    
+
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
       authDomain: "soudfa-9a558.firebaseapp.com",
@@ -229,7 +240,7 @@
 
     function login() {
       auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
-        .catch(e => document.getElementById("loginError").innerText = "❌ بيانات الدخول غير مصرح بها");
+        .catch(e => document.getElementById("loginError").innerText = "❌ البريد أو الرمز خطأ");
     }
 
     function logout() { auth.signOut().then(() => location.reload()); }
@@ -249,9 +260,9 @@
         cssCode: document.getElementById("cssCode").value,
         isNew: document.getElementById("isNew").value === "true"
       };
-      if(!data.previewHTML || !data.cssCode) return;
+      if(!data.previewHTML || !data.cssCode) return alert("املا الخانات ضلعي");
       const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-      ref.set(data).then(() => { resetForm(); loadCodes(); });
+      ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ بنجاح ✅"); });
     }
 
     function loadCodes() {
@@ -260,13 +271,13 @@
         snap.forEach(child => {
           const d = child.val();
           const div = document.createElement("div");
-          div.className = "code-card-ultra";
+          div.className = "item-card";
           div.innerHTML = `
-            <div>${d.previewHTML}</div>
-            <pre class="code-display">${d.cssCode}</pre>
-            <div style="display:flex; gap:10px;">
-              <button class="btn-ultra" style="background:var(--primary); color:#fff; padding:8px 20px; font-size:12px;" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
-              <button class="btn-ultra" style="background:#ff4757; color:#fff; padding:8px 20px; font-size:12px;" onclick="deleteCode('${child.key}')">حذف</button>
+            <div style="margin-bottom:10px;">${d.previewHTML}</div>
+            <pre>${d.cssCode}</pre>
+            <div class="btn-row">
+              <button class="btn-main" style="background:var(--primary); color:#fff; padding:8px;" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
+              <button class="btn-main" style="background:#e74c3c; color:#fff; padding:8px;" onclick="deleteCode('${child.key}')">حذف</button>
             </div>`;
           list.appendChild(div);
         });
@@ -281,7 +292,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function deleteCode(k) { if(confirm("تأكيد تدمير الكود من القاعدة؟")) db.ref("codes/"+k).remove(); }
+    function deleteCode(k) { if(confirm("تحذف الكود نهائياً؟")) db.ref("codes/"+k).remove(); }
     function resetForm() { document.getElementById("editKey").value = ""; document.getElementById("previewHTML").value = ""; document.getElementById("cssCode").value = ""; }
   </script>
 </body>
