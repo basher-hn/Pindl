@@ -2,64 +2,199 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>لوحة التحكم VIP – Css Basher</title>
+  <title>لوحة التحكم – Bashir Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Cairo', sans-serif; background: #0a0a0a; margin: 0; padding: 20px; color: #fff; direction: rtl; }
-    .header-vip { background: #111; border-radius: 8px; border-bottom: 3px solid #3498db; text-align: center; padding: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-    .logo-circle-vip { background: #000; color: #3498db; width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 10px auto; font-size: 22px; border: 2px solid #3498db; box-shadow: 0 0 15px rgba(52, 152, 219, 0.3); }
-    .form-vip { background: #111; padding: 25px; border-radius: 8px; border-right: 4px solid #3498db; margin: 0 auto 25px auto; max-width: 700px; box-shadow: 10px 10px 20px #050505; }
-    textarea, input, select { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #222; background: #080808; color: #fff; margin-bottom: 15px; box-shadow: inset 4px 4px 8px #000; box-sizing: border-box; outline: none; transition: 0.3s; }
-    textarea:focus, input:focus { border-color: #3498db; }
-    .btn-group-vip { display: flex; gap: 10px; }
-    button { flex: 1; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; font-family: 'Cairo', sans-serif; }
-    .btn-save-vip { background: #3498db; color: #fff; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
-    .btn-logout-vip { background: #1a1a1a; color: #e74c3c; border: 1px solid #e74c3c; }
-    .code-item-vip { background: #111; border-radius: 8px; border-right: 4px solid #3498db; margin-bottom: 20px; padding: 20px; box-shadow: 5px 5px 15px #050505; }
-    pre.code-box-vip { background: #050505; padding: 15px; border-radius: 8px; overflow-x: auto; color: #3498db; box-shadow: inset 3px 3px 10px #000; direction: ltr; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #ecf0f3;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+    }
+
+    .header {
+      background: #ffffff;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+      text-align: center;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .logo-circle {
+      background: #00b894;
+      color: #fff;
+      font-weight: bold;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px auto;
+      font-size: 22px;
+    }
+
+    .form {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+      margin: 0 auto 20px auto;
+      max-width: 700px;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 90%;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background: #f9f9f9;
+    }
+
+    button {
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      background: white;
+      color: #000;
+      border: 2px solid #00b894;
+    }
+
+    button.right-shadow {
+      box-shadow: 4px 0 0 #00b894;
+    }
+
+    button.left-shadow {
+      box-shadow: -4px 0 0 #00b894;
+    }
+
+    .code-item {
+      background: #ffffff;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+      margin-bottom: 20px;
+      padding: 16px;
+    }
+
+    .code-item * {
+      box-sizing: border-box;
+    }
+
+    .code-list {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #2d3436;
+      margin-bottom: 4px;
+    }
+
+    pre.code-box {
+      background: #f1f1f1;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 15px;
+      direction: ltr;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
     .hidden { display: none; }
+    .center { text-align: center; }
+
+    #loginBox {
+      max-width: 400px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      border-right: 4px solid #00b894;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
 </style>
 </head>
-<body>
-
-<div class="header-vip">
-  <div style="font-weight:bold; font-size:22px;">Css•<span style='color:#3498db'>Basher</span>•Wapka</div>
-  <div class="logo-circle-vip">C•B•W</div>
+<body><div class="header">
+  <div style="font-weight:bold; font-size:20px;">Css•<span style='color:#00b894'>Basher</span>•Wapka</div>
+  <div class="logo-circle">C•B•W</div>
 </div>
 
+
+<!-- ✅ صندوق تسجيل الدخول -->
 <div id="loginBox">
-  <div class="form-vip" style="max-width: 400px;">
-    <h2 style="text-align:center;">دخول الأدمن VIP</h2>
-    <div id="loginError" style="color:#e74c3c; text-align:center; margin-bottom:10px;"></div>
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button class="btn-save-vip" onclick="login()">دخول للمنصة</button>
-  </div>
+  <h2 class="center">تسجيل الدخول – الأدمن</h2>
+  <div id="loginError" class="center" style="color:red;"></div>
+  <input type="email" id="email" placeholder="البريد الإلكتروني">
+  <input type="password" id="password" placeholder="كلمة المرور">
+  <button onclick="login()">دخول</button>
 </div>
 
+<!-- ✅ لوحة تحكم الأدمن -->
 <div id="adminPanel" class="hidden">
-  <div class="form-vip">
-    <h3><i class="fa fa-edit"></i> إضافة / تعديل كود</h3>
+  
+
+  <div class="form">
+    <h3>➕ إضافة / تعديل كود</h3>
     <input type="hidden" id="editKey" />
-    <input type="text" id="previewHTML" placeholder="كود المعاينة HTML">
-    <textarea id="cssCode" rows="5" placeholder="كود الـ CSS"></textarea>
+    <label class="label">شكل المعاينة (previewHTML):</label>
+    <textarea id="previewHTML" rows="3" placeholder="مثال: <button style='background: red;'>زر</button>"></textarea>
+
+    <label class="label">كود CSS (cssCode):</label>
+    <textarea id="cssCode" rows="4" placeholder="مثال: background: red; color: white;"></textarea>
+
+    <label class="label">جديد؟ (isNew):</label>
     <select id="isNew">
-      <option value="true">✅ جديد (NEW)</option>
-      <option value="false">❌ عادي</option>
+      <option value="true">✅ نعم</option>
+      <option value="false">❌ لا</option>
     </select>
-    <div class="btn-group-vip">
-      <button class="btn-logout-vip" onclick="logout()">خروج</button>
-      <button class="btn-save-vip" onclick="saveCode()">حفظ البيانات</button>
-    </div>
-  </div>
-  <div id="codesList" style="max-width:700px; margin:auto;"></div>
+
+    
+<div style="display: flex; justify-content: space-between; gap: 10px; width: 100%;">
+  <button onclick="logout()" id="logoutBtn" style="max-width: 400px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 6px 18px 6px 18px;
+      border-radius: 10px;
+      border-left: 4px solid #00b894;">خروج</button>
+  <button onclick="saveCode()" style="max-width: 400px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 6px 18px 6px 18px;
+      border-radius: 10px;
+      border-right: 4px solid #00b894;">حفظ</button>
 </div>
 
+  </div>
+
+  <div class="code-list" id="codesList">
+    <h3 style="text-align:center;">📦 الأكواد الحالية</h3>
+    <!-- الأكواد تنعرض هنا -->
+  </div>
+</div>
+
+<!-- ✅ Firebase Auth + Database -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
@@ -70,59 +205,162 @@
     messagingSenderId: "889312889458",
     appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
   };
+
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const db = firebase.database();
 
+  // تسجيل الدخول
   function login() {
-    auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
-      .catch(e => document.getElementById("loginError").innerText = "❌ خطأ بالبيانات");
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("loginError");
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        loadCodes();
+      })
+      .catch(() => {
+        errorBox.textContent = "❌ البريد أو كلمة المرور غير صحيحة.";
+      });
   }
 
-  function logout() { auth.signOut().then(() => location.reload()); }
+  // تسجيل الخروج
+  function logout() {
+    auth.signOut().then(() => location.reload());
+  }
 
+  // التحقق من الحالة
   auth.onAuthStateChanged(user => {
-    if (user) { document.getElementById("loginBox").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); loadCodes(); }
+    if (user) {
+      document.getElementById("loginBox").classList.add("hidden");
+      document.getElementById("adminPanel").classList.remove("hidden");
+      loadCodes();
+    } else {
+      document.getElementById("loginBox").classList.remove("hidden");
+      document.getElementById("adminPanel").classList.add("hidden");
+    }
   });
 
   function saveCode() {
-    const key = document.getElementById("editKey").value;
-    const data = {
-      previewHTML: document.getElementById("previewHTML").value,
-      cssCode: document.getElementById("cssCode").value,
-      isNew: document.getElementById("isNew").value === "true"
-    };
-    const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-    ref.set(data).then(() => { resetForm(); loadCodes(); });
+    const previewHTML = document.getElementById("previewHTML").value;
+    const cssCode = document.getElementById("cssCode").value;
+    const isNew = document.getElementById("isNew").value === "true";
+    const editKey = document.getElementById("editKey").value;
+
+    if (!previewHTML || !cssCode) {
+      alert("يرجى ملء جميع الحقول");
+      return;
+    }
+
+    const codeData = { previewHTML, cssCode, isNew };
+
+    if (editKey) {
+      db.ref("codes/" + editKey).set(codeData).then(() => {
+        resetForm();
+        loadCodes();
+      });
+    } else {
+      const newKey = db.ref().child("codes").push().key;
+      db.ref("codes/" + newKey).set(codeData).then(() => {
+        resetForm();
+        loadCodes();
+      });
+    }
   }
 
   function loadCodes() {
-    db.ref("codes").on("value", snap => {
-      const list = document.getElementById("codesList"); list.innerHTML = "";
-      snap.forEach(child => {
-        const d = child.val();
-        const div = document.createElement("div");
-        div.className = "code-item-vip";
-        div.innerHTML = `<div>${d.previewHTML}</div><pre class="code-box-vip">${d.cssCode}</pre>
-          <div class="btn-group-vip">
-            <button style="background:#007bff; color:#fff;" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
-            <button style="background:#dc3545; color:#fff;" onclick="deleteCode('${child.key}')">حذف</button>
-          </div>`;
-        list.appendChild(div);
+    const container = document.getElementById("codesList");
+    container.innerHTML = "";
+
+    db.ref("codes").once("value", (snapshot) => {
+      snapshot.forEach((child) => {
+        const key = child.key;
+        const data = child.val();
+
+        const item = document.createElement("div");
+        item.className = "code-item";
+
+        const previewDiv = document.createElement("div");
+        previewDiv.innerHTML = `<strong>Preview:</strong><br>${data.previewHTML}`;
+
+        const cssDiv = document.createElement("div");
+        cssDiv.innerHTML = `<strong>CSS:</strong>`;
+        const cssPre = document.createElement("pre");
+        cssPre.className = "code-box";
+        cssPre.textContent = data.cssCode;
+        cssDiv.appendChild(cssPre);
+
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = `<strong>NEW:</strong> ${data.isNew ? "✅" : "❌"}`;
+
+        const buttonWrapper = document.createElement("div");
+        buttonWrapper.style.marginTop = "10px";
+
+        
+const editBtn = document.createElement("button");
+editBtn.className = "edit";
+editBtn.textContent = "تعديل";
+editBtn.style.padding = '6px 12px';
+editBtn.style.fontSize = '14px';
+editBtn.style.fontWeight = 'bold';
+editBtn.style.backgroundColor = '#007bff';
+editBtn.style.color = '#fff';
+editBtn.style.border = 'none';
+editBtn.style.borderRadius = '8px';
+editBtn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+editBtn.onclick = () => editCode(key, data.previewHTML, data.cssCode, data.isNew);
+
+const deleteBtn = document.createElement("button");
+deleteBtn.className = "delete";
+deleteBtn.textContent = "حذف";
+deleteBtn.style.padding = '6px 12px';
+deleteBtn.style.fontSize = '14px';
+deleteBtn.style.fontWeight = 'bold';
+deleteBtn.style.backgroundColor = '#dc3545';
+deleteBtn.style.color = '#fff';
+deleteBtn.style.border = 'none';
+deleteBtn.style.borderRadius = '8px';
+deleteBtn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+deleteBtn.onclick = () => deleteCode(key);
+
+buttonWrapper.appendChild(editBtn);
+buttonWrapper.appendChild(deleteBtn);
+
+
+        item.appendChild(previewDiv);
+        item.appendChild(cssDiv);
+        item.appendChild(newDiv);
+        item.appendChild(buttonWrapper);
+
+        container.appendChild(item);
       });
     });
   }
 
-  function editCode(key, html, css, isNew) {
+  function deleteCode(key) {
+    if (confirm("هل أنت متأكد من حذف الكود؟")) {
+      db.ref("codes/" + key).remove().then(loadCodes);
+    }
+  }
+
+  function editCode(key, previewHTML, cssCode, isNew) {
     document.getElementById("editKey").value = key;
-    document.getElementById("previewHTML").value = html;
-    document.getElementById("cssCode").value = css;
+    document.getElementById("previewHTML").value = previewHTML;
+    document.getElementById("cssCode").value = cssCode;
     document.getElementById("isNew").value = isNew ? "true" : "false";
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function deleteCode(key) { if(confirm("حذف؟")) db.ref("codes/"+key).remove(); }
-  function resetForm() { document.getElementById("editKey").value = ""; document.getElementById("previewHTML").value = ""; document.getElementById("cssCode").value = ""; }
+  function resetForm() {
+    document.getElementById("editKey").value = "";
+    document.getElementById("previewHTML").value = "";
+    document.getElementById("cssCode").value = "";
+    document.getElementById("isNew").value = "false";
+  }
 </script>
+
 </body>
 </html>
