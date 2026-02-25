@@ -21,7 +21,9 @@
       margin: 0;
       padding: 15px;
       color: #2d3436;
-      -webkit-tap-highlight-color: transparent;
+      /* السماح بالاختيار والنسخ في لوحة الأدمن */
+      user-select: text !important;
+      -webkit-user-select: text !important;
     }
 
     .header {
@@ -87,6 +89,7 @@
 
     .btn-save { background: var(--primary-green); color: white; box-shadow: 4px 4px 10px var(--shadow-dark); }
     .btn-logout { background: var(--bg-color); color: #e74c3c; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+    .btn-cancel { background: #95a5a6; color: white; display: none; }
     
     button:active { transform: scale(0.96); box-shadow: inset 2px 2px 5px var(--shadow-dark); }
 
@@ -97,7 +100,7 @@
       padding: 18px;
       box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
       border-right: 4px solid var(--primary-green);
-      overflow: hidden; /* يمنع خروج المحتوى */
+      overflow: hidden;
     }
 
     pre.code-box {
@@ -107,10 +110,11 @@
       border-radius: 8px;
       font-size: 13px;
       direction: ltr;
-      white-space: pre-wrap; /* يخلي الكود ينزل سطر جديد وما يطلع بره المربع */
+      white-space: pre-wrap;
       word-break: break-all;
       box-shadow: inset 4px 4px 10px #000;
       margin: 10px 0;
+      user-select: all; /* يسهل عليك تحديد الكود كله بلمسة */
     }
 
     #loginBox {
@@ -126,7 +130,7 @@
     .hidden { display: none; }
   </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
 <div class="header">
   <div style="font-weight:900; font-size:20px;">Css•<span style='color:var(--primary-green)'>Basher</span>•Wapka</div>
@@ -152,6 +156,7 @@
     </select>
     <div class="btn-row">
       <button class="btn-logout" onclick="logout()">خروج</button>
+      <button class="btn-cancel" id="cancelBtn" onclick="resetForm()">إلغاء</button>
       <button class="btn-save" onclick="saveCode()">حفظ البيانات</button>
     </div>
   </div>
@@ -200,7 +205,7 @@
     };
     if(!data.previewHTML || !data.cssCode) return alert("املأ الحقول");
     const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-    ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ ✅"); });
+    ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ بنجاح ✅"); });
   }
 
   function loadCodes() {
@@ -211,7 +216,7 @@
         const div = document.createElement("div");
         div.className = "code-item";
         div.innerHTML = `
-          <div style="margin-bottom:10px">${d.previewHTML}</div>
+          <div style="margin-bottom:10px; font-weight:bold;">${d.previewHTML}</div>
           <pre class="code-box">${d.cssCode}</pre>
           <div class="btn-row">
             <button style="background:var(--primary-green); color:#fff" onclick="triggerEdit('${child.key}')">تعديل</button>
@@ -222,25 +227,30 @@
     });
   }
 
-  // وظيفة التعديل المضمونة 100%
+  // التعديل المضمون بالسحب المباشر لتجنب أخطاء النسخ
   function triggerEdit(key) {
-    db.ref("codes/" + key).once("value", snap => {
+    db.ref("codes/" + key).once("value").then(snap => {
       const d = snap.val();
       document.getElementById("editKey").value = key;
       document.getElementById("previewHTML").value = d.previewHTML;
       document.getElementById("cssCode").value = d.cssCode;
       document.getElementById("isNew").value = d.isNew ? "true" : "false";
-      document.getElementById("formTitle").innerText = "✏️ تعديل الكود";
+      
+      document.getElementById("formTitle").innerText = "✏️ تعديل الكود الحالي";
+      document.getElementById("cancelBtn").style.display = "block";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  function deleteCode(key) { if(confirm("حذف؟")) db.ref("codes/"+key).remove(); }
+  function deleteCode(key) { if(confirm("حذف هذا الكود نهائياً؟")) db.ref("codes/"+key).remove(); }
+  
   function resetForm() {
     document.getElementById("editKey").value = "";
     document.getElementById("previewHTML").value = "";
     document.getElementById("cssCode").value = "";
+    document.getElementById("isNew").value = "true";
     document.getElementById("formTitle").innerText = "➕ إضافة كود جديد";
+    document.getElementById("cancelBtn").style.display = "none";
   }
 </script>
 </body>
