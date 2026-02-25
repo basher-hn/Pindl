@@ -2,185 +2,287 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>لوحة التحكم VIP – Css Basher</title>
+  <title>Admin Dashboard Ultra VIP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  
   <style>
-    /* الستايل الملكي VIP 3D */
-    body { font-family: 'Cairo', sans-serif; background: #0a0a0a; margin: 0; padding: 20px; color: #fff; direction: rtl; }
-    .header-vip { background: #111; border-radius: 8px; border-bottom: 3px solid #3498db; text-align: center; padding: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-    .logo-circle-vip { background: #000; color: #3498db; width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 10px auto; font-size: 22px; border: 2px solid #3498db; box-shadow: 0 0 15px rgba(52, 152, 219, 0.3); }
-    
-    .form-vip { background: #111; padding: 25px; border-radius: 8px; border-right: 4px solid #3498db; margin: 0 auto 25px auto; max-width: 700px; box-shadow: 10px 10px 20px #050505; }
-    textarea, input, select { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #222; background: #080808; color: #fff; margin-bottom: 15px; box-shadow: inset 4px 4px 8px #000; box-sizing: border-box; outline: none; transition: 0.3s; font-family: 'Cairo'; }
-    textarea:focus, input:focus { border-color: #3498db; box-shadow: inset 2px 2px 5px #000, 0 0 10px rgba(52, 152, 219, 0.2); }
-    
-    .btn-group-vip { display: flex; gap: 10px; margin-top: 10px; }
-    button { flex: 1; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; font-family: 'Cairo', sans-serif; font-size: 15px; }
-    
-    .btn-save-vip { background: #3498db; color: #fff; box-shadow: 6px 6px 12px #050505, -2px -2px 5px #1a1a1a; }
-    .btn-logout-vip { background: #1a1a1a; color: #e74c3c; border: 1px solid #e74c3c; }
-    button:active { transform: scale(0.97); box-shadow: inset 3px 3px 5px #000; }
+    /* التصميم الزجاجي الخرافي - Ultra Futuristic */
+    :root {
+      --primary: #3498db;
+      --bg: #050505;
+      --card-bg: rgba(20, 20, 20, 0.7);
+    }
 
-    .code-item-vip { background: #111; border-radius: 8px; border-right: 4px solid #3498db; margin-bottom: 20px; padding: 20px; box-shadow: 8px 8px 16px #050505; position: relative; }
-    pre.code-box-vip { background: #050505; padding: 15px; border-radius: 8px; overflow-x: auto; color: #3498db; box-shadow: inset 3px 3px 10px #000; direction: ltr; font-size: 13px; border: 1px solid #1a1a1a; }
-    
-    /* أزرار التعديل والحذف داخل الكروت */
-    .action-btn { padding: 8px 15px; font-size: 13px; flex: none; width: auto; min-width: 80px; }
-    .btn-edit { background: #007bff; color: white; box-shadow: 4px 4px 8px #080808; }
-    .btn-delete { background: #dc3545; color: white; box-shadow: 4px 4px 8px #080808; }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 20%);
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* هيدر النيون العائم */
+    .header-ultra {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(52,152,219,0.1);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .logo-glow {
+      width: 90px;
+      height: 90px;
+      background: #000;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 25px var(--primary), inset 0 0 15px var(--primary);
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      animation: pulse-glow 2s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 15px var(--primary); }
+      50% { box-shadow: 0 0 35px var(--primary); }
+      100% { box-shadow: 0 0 15px var(--primary); }
+    }
+
+    /* فورم التحكم المحفور */
+    .ultra-form {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 750px;
+      margin: 0 auto 40px;
+      border-right: 6px solid var(--primary);
+      box-shadow: 15px 15px 30px #000;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-group label {
+      display: block;
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .ultra-input {
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      box-shadow: inset 4px 4px 10px #000;
+      box-sizing: border-box;
+      transition: 0.4s;
+    }
+
+    .ultra-input:focus {
+      border-color: var(--primary);
+      box-shadow: inset 2px 2px 5px #000, 0 0 15px rgba(52,152,219,0.2);
+    }
+
+    /* أزرار النيون 3D */
+    .btn-ultra {
+      padding: 15px 35px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.4s;
+      font-family: 'Cairo';
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-save {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(52,152,219,0.4);
+    }
+
+    .btn-save:hover {
+      box-shadow: 0 0 40px var(--primary);
+      transform: scale(1.05);
+    }
+
+    /* كروت الأكواد المرفوعة */
+    .code-card-ultra {
+      background: rgba(15, 15, 15, 0.8);
+      border-radius: 8px;
+      margin-bottom: 25px;
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,0.02);
+      box-shadow: 10px 10px 25px #000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .code-display {
+      background: #000;
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid #111;
+      box-shadow: inset 4px 4px 12px #000;
+      color: var(--primary);
+      font-family: monospace;
+      font-size: 13px;
+      overflow-x: auto;
+    }
 
     .hidden { display: none; }
-    .label-vip { display: block; margin-bottom: 5px; color: #3498db; font-size: 13px; font-weight: bold; }
-</style>
+  </style>
 </head>
-<body>
-
-<div class="header-vip">
-  <div style="font-weight:bold; font-size:22px;">Css•<span style='color:#3498db'>Basher</span>•Wapka</div>
-  <div class="logo-circle-vip">C•B•W</div>
-</div>
-
-<div id="loginBox">
-  <div class="form-vip" style="max-width: 400px; text-align: center;">
-    <h2 style="margin-top:0;">دخول الأدمن VIP</h2>
-    <div id="loginError" style="color:#e74c3c; margin-bottom:10px;"></div>
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button class="btn-save-vip" onclick="login()">دخول للمنصة <i class="fa fa-sign-in-alt"></i></button>
+<body oncontextmenu="return false;"> <div class="header-ultra">
+    <div class="logo-glow">C•B•W</div>
+    <h1 style="margin:0; font-weight:900; letter-spacing:2px;">DASHBOARD <span style="color:var(--primary)">ULTRA VIP</span></h1>
   </div>
-</div>
 
-<div id="adminPanel" class="hidden">
-  <div class="form-vip">
-    <h3><i class="fa fa-magic"></i> إضافة / تعديل كود</h3>
-    <input type="hidden" id="editKey" />
-    
-    <label class="label-vip">كود المعاينة HTML:</label>
-    <input type="text" id="previewHTML" placeholder="مثال: <button class='btn'>زر</button>">
-    
-    <label class="label-vip">كود CSS الخاص به:</label>
-    <textarea id="cssCode" rows="6" placeholder="مثال: .btn { background: blue; }"></textarea>
-    
-    <label class="label-vip">حالة الكود:</label>
-    <select id="isNew">
-      <option value="true">✅ جديد (يظهر عليه NEW)</option>
-      <option value="false">❌ عادي</option>
-    </select>
-    
-    <div class="btn-group-vip">
-      <button class="btn-logout-vip" onclick="logout()">خروج <i class="fa fa-power-off"></i></button>
-      <button class="btn-save-vip" onclick="saveCode()">حفظ البيانات <i class="fa fa-save"></i></button>
+  <div id="loginBox" class="ultra-form" style="max-width:400px; text-align:center;">
+    <h2 style="color:var(--primary)">ACCESS DENIED</h2>
+    <p style="font-size:12px; opacity:0.6;">يرجى إثبات هويتك للدخول إلى غرفة العمليات</p>
+    <div id="loginError" style="color:#ff4757; font-size:12px; margin-bottom:10px;"></div>
+    <input type="email" id="email" class="ultra-input" placeholder="البريد الإلكتروني" style="margin-bottom:15px;">
+    <input type="password" id="password" class="ultra-input" placeholder="كلمة المرور" style="margin-bottom:20px;">
+    <button class="btn-ultra btn-save" onclick="login()">دخول القائد</button>
+  </div>
+
+  <div id="adminPanel" class="hidden">
+    <div class="ultra-form">
+      <h3><i class="fa fa-terminal" style="margin-left:10px;"></i> إضافة كود جديد</h3>
+      <input type="hidden" id="editKey">
+      
+      <div class="input-group">
+        <label>المعاينة الذكية (HTML):</label>
+        <input type="text" id="previewHTML" class="ultra-input" placeholder="أدخل كود المعاينة هنا...">
+      </div>
+
+      <div class="input-group">
+        <label>كود الـ CSS الملكي:</label>
+        <textarea id="cssCode" class="ultra-input" rows="6" placeholder="اكتب كود الـ CSS هنا..."></textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <select id="isNew" class="ultra-input" style="width:150px; margin:0;">
+          <option value="true">✅ جديد</option>
+          <option value="false">❌ قديم</option>
+        </select>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-ultra" style="background:#111; color:#ff4757; border:1px solid #ff4757;" onclick="logout()">خروج</button>
+          <button class="btn-ultra btn-save" onclick="saveCode()">حفظ في السيرفر</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="codesList" style="max-width:750px; margin:0 auto;">
+      <h3 style="text-align:center; color:var(--primary); margin-bottom:30px;">ARCHIVE DATABASE</h3>
     </div>
   </div>
-  
-  <div id="codesList" style="max-width:700px; margin:auto;">
-      <h3 style="text-align:center; color:#3498db;"><i class="fa fa-layer-group"></i> الأكواد المرفوعة</h3>
-  </div>
-</div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
-    authDomain: "soudfa-9a558.firebaseapp.com",
-    databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
-    projectId: "soudfa-9a558",
-    storageBucket: "soudfa-9a558.appspot.com",
-    messagingSenderId: "889312889458",
-    appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.database();
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-  function login() {
-    auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
-      .catch(e => document.getElementById("loginError").innerText = "❌ خطأ في الدخول");
-  }
+  <script>
+    /* 🛡️ درع الحماية VIP - تم التشفير والدمج */
+    document.onkeydown = function(e) {
+      if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
+    };
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
+      authDomain: "soudfa-9a558.firebaseapp.com",
+      databaseURL: "https://soudfa-9a558-default-rtdb.firebaseio.com",
+      projectId: "soudfa-9a558",
+      storageBucket: "soudfa-9a558.appspot.com",
+      messagingSenderId: "889312889458",
+      appId: "1:889312889458:web:2f7086b73e5bda0328e01a"
+    };
 
-  function logout() { auth.signOut().then(() => location.reload()); }
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth(), db = firebase.database();
 
-  auth.onAuthStateChanged(user => {
-    if (user) { 
+    function login() {
+      auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
+        .catch(e => document.getElementById("loginError").innerText = "❌ بيانات الدخول غير مصرح بها");
+    }
+
+    function logout() { auth.signOut().then(() => location.reload()); }
+
+    auth.onAuthStateChanged(user => {
+      if (user) { 
         document.getElementById("loginBox").classList.add("hidden"); 
         document.getElementById("adminPanel").classList.remove("hidden"); 
         loadCodes(); 
-    }
-  });
-
-  function saveCode() {
-    const key = document.getElementById("editKey").value;
-    const data = {
-      previewHTML: document.getElementById("previewHTML").value,
-      cssCode: document.getElementById("cssCode").value,
-      isNew: document.getElementById("isNew").value === "true"
-    };
-    if(!data.previewHTML || !data.cssCode) return alert("املأ الحقول ضلعي");
-    const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-    ref.set(data).then(() => { resetForm(); loadCodes(); });
-  }
-
-  function loadCodes() {
-    db.ref("codes").on("value", snap => {
-      const list = document.getElementById("codesList"); 
-      list.innerHTML = "";
-      snap.forEach(child => {
-        const d = child.val();
-        const div = document.createElement("div");
-        div.className = "code-item-vip";
-        
-        // بناء الكارد VIP
-        div.innerHTML = `
-          <div style="margin-bottom:15px;"><strong>المعاينة:</strong><br>${d.previewHTML}</div>
-          <pre class="code-box-vip">${d.cssCode}</pre>
-          <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
-            <button class="action-btn btn-edit" id="btn-edit-${child.key}">تعديل <i class="fa fa-pen"></i></button>
-            <button class="action-btn btn-delete" id="btn-del-${child.key}">حذف <i class="fa fa-trash"></i></button>
-          </div>
-        `;
-        list.appendChild(div);
-
-        // ربط الأحداث يدوياً لضمان العمل
-        document.getElementById(`btn-edit-${child.key}`).onclick = () => editCode(child.key, d.previewHTML, d.cssCode, d.isNew);
-        document.getElementById(`btn-del-${child.key}`).onclick = () => deleteCode(child.key);
-      });
+      }
     });
-  }
 
-  function editCode(key, html, css, isNew) {
-    document.getElementById("editKey").value = key;
-    document.getElementById("previewHTML").value = html;
-    document.getElementById("cssCode").value = css;
-    document.getElementById("isNew").value = isNew ? "true" : "false";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function deleteCode(key) { if(confirm("حذف؟")) db.ref("codes/"+key).remove(); }
-  
-  function resetForm() { 
-    document.getElementById("editKey").value = ""; 
-    document.getElementById("previewHTML").value = ""; 
-    document.getElementById("cssCode").value = ""; 
-    document.getElementById("isNew").value = "false";
-  }
-</script>
-<script>
-  // قفل الكليك الأيمن
-  document.addEventListener('contextmenu', e => e.preventDefault());
-
-  // قفل أزرار الكيبورد الخاصة بالمبرمجين (F12, Ctrl+U, Ctrl+Shift+I)
-  document.onkeydown = function(e) {
-    if (e.keyCode == 123 || 
-       (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || 
-       (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-      return false;
+    function saveCode() {
+      const key = document.getElementById("editKey").value;
+      const data = {
+        previewHTML: document.getElementById("previewHTML").value,
+        cssCode: document.getElementById("cssCode").value,
+        isNew: document.getElementById("isNew").value === "true"
+      };
+      if(!data.previewHTML || !data.cssCode) return;
+      const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
+      ref.set(data).then(() => { resetForm(); loadCodes(); });
     }
-  };
-</script>
-  
+
+    function loadCodes() {
+      db.ref("codes").on("value", snap => {
+        const list = document.getElementById("codesList"); list.innerHTML = "";
+        snap.forEach(child => {
+          const d = child.val();
+          const div = document.createElement("div");
+          div.className = "code-card-ultra";
+          div.innerHTML = `
+            <div>${d.previewHTML}</div>
+            <pre class="code-display">${d.cssCode}</pre>
+            <div style="display:flex; gap:10px;">
+              <button class="btn-ultra" style="background:var(--primary); color:#fff; padding:8px 20px; font-size:12px;" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
+              <button class="btn-ultra" style="background:#ff4757; color:#fff; padding:8px 20px; font-size:12px;" onclick="deleteCode('${child.key}')">حذف</button>
+            </div>`;
+          list.appendChild(div);
+        });
+      });
+    }
+
+    function editCode(k, h, c, n) {
+      document.getElementById("editKey").value = k;
+      document.getElementById("previewHTML").value = h;
+      document.getElementById("cssCode").value = c;
+      document.getElementById("isNew").value = n ? "true" : "false";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteCode(k) { if(confirm("تأكيد تدمير الكود من القاعدة؟")) db.ref("codes/"+k).remove(); }
+    function resetForm() { document.getElementById("editKey").value = ""; document.getElementById("previewHTML").value = ""; document.getElementById("cssCode").value = ""; }
+  </script>
 </body>
 </html>
