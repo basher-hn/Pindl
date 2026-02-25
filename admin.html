@@ -8,12 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* تصميم متطور مخصص للمبايل - Ultra Glass 3D */
     :root {
       --primary: #3498db;
-      --accent: #2ecc71;
       --bg: #080808;
-      --glass: rgba(25, 25, 25, 0.85);
+      --glass: rgba(20, 20, 20, 0.95);
     }
 
     body {
@@ -22,15 +20,12 @@
       margin: 0;
       padding: 10px;
       color: #fff;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    /* هيدر ذكي للمبايل */
     .header-mobile {
       background: var(--glass);
-      backdrop-filter: blur(10px);
       border-radius: 8px;
-      padding: 20px 10px;
+      padding: 20px;
       text-align: center;
       margin-bottom: 20px;
       border-bottom: 3px solid var(--primary);
@@ -38,8 +33,8 @@
     }
 
     .logo-glow {
-      width: 70px;
-      height: 70px;
+      width: 65px;
+      height: 65px;
       background: #000;
       border-radius: 50%;
       margin: 0 auto 10px;
@@ -50,19 +45,6 @@
       box-shadow: 0 0 15px var(--primary);
       font-size: 18px;
       font-weight: 900;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 5px var(--primary); }
-      50% { box-shadow: 0 0 20px var(--primary); }
-      100% { box-shadow: 0 0 5px var(--primary); }
-    }
-
-    /* فورم التحكم - مرونة كاملة */
-    .main-container {
-      max-width: 100%;
-      margin: 0 auto;
     }
 
     .ultra-card {
@@ -74,42 +56,21 @@
       box-shadow: 10px 10px 20px rgba(0,0,0,0.4);
     }
 
-    .field-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      color: var(--primary);
-      font-weight: bold;
-    }
-
     .ultra-input {
       width: 100%;
       background: rgba(0,0,0,0.6);
       border: 1px solid #222;
-      padding: 12px;
+      padding: 14px;
       border-radius: 8px;
       color: #fff;
       font-size: 15px;
       box-shadow: inset 2px 2px 8px #000;
       box-sizing: border-box;
-      outline: none;
+      margin-bottom: 15px;
       font-family: 'Cairo';
     }
 
-    .ultra-input:focus {
-      border-color: var(--primary);
-    }
-
-    /* أزرار ضخمة سهلة اللمس */
-    .btn-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
+    .btn-row { display: flex; gap: 10px; margin-top: 10px; }
 
     .btn-main {
       flex: 1;
@@ -119,27 +80,18 @@
       font-weight: 900;
       cursor: pointer;
       font-family: 'Cairo';
-      font-size: 14px;
       transition: 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
 
     .btn-save { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(52,152,219,0.3); }
     .btn-logout { background: #1a1a1a; color: #e74c3c; border: 1px solid #e74c3c; }
     
-    .btn-main:active { transform: scale(0.95); box-shadow: inset 2px 2px 5px #000; }
-
-    /* كروت الأكواد المرفوعة */
     .item-card {
       background: #111;
       padding: 15px;
       border-radius: 8px;
       margin-bottom: 15px;
-      border: 1px solid #1a1a1a;
-      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+      border-right: 4px solid var(--primary);
     }
 
     pre {
@@ -149,70 +101,43 @@
       font-size: 12px;
       color: var(--primary);
       overflow-x: auto;
-      border: 1px solid #111;
       direction: ltr;
+      border: 1px solid #111;
     }
 
     .hidden { display: none; }
-
-    /* تحسينات المبايل */
-    @media (max-width: 600px) {
-      .header-mobile h1 { font-size: 20px; }
-      .ultra-card { padding: 15px; }
-    }
   </style>
 </head>
 <body oncontextmenu="return false;">
 
   <div class="header-mobile">
     <div class="logo-glow">C•B•W</div>
-    <h1 style="margin:0; font-size: 22px;">ADMIN <span style="color:var(--primary)">ULTRA</span></h1>
+    <h1 style="margin:0; font-size: 20px;">ADMIN <span style="color:var(--primary)">ULTRA 3D</span></h1>
   </div>
 
-  <div class="main-container">
-    
-    <div id="loginBox" class="ultra-card" style="max-width:350px; margin:auto; border-right:none; border-bottom:4px solid var(--primary);">
-      <h3 style="text-align:center;">تسجيل دخول الآدمن</h3>
-      <div id="loginError" style="color:#e74c3c; text-align:center; font-size:12px; margin-bottom:10px;"></div>
-      <input type="email" id="email" class="ultra-input" placeholder="البريد الإلكتروني" style="margin-bottom:15px;">
-      <input type="password" id="password" class="ultra-input" placeholder="كلمة المرور">
-      <button class="btn-main btn-save" style="margin-top:20px; width:100%;" onclick="login()">دخول للمنصة <i class="fa fa-sign-in-alt"></i></button>
-    </div>
+  <div id="loginBox" class="ultra-card" style="max-width:400px; margin:auto; text-align:center;">
+    <h3>دخول القائد</h3>
+    <input type="email" id="email" class="ultra-input" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" class="ultra-input" placeholder="كلمة المرور">
+    <button class="btn-main btn-save" style="width:100%" onclick="login()">دخول</button>
+  </div>
 
-    <div id="adminPanel" class="hidden">
-      <div class="ultra-card">
-        <h3><i class="fa fa-plus-circle"></i> إضافة كود جديد</h3>
-        <input type="hidden" id="editKey">
-        
-        <div class="field-group">
-          <label>كود المعاينة (HTML):</label>
-          <input type="text" id="previewHTML" class="ultra-input" placeholder="مثلاً: <button>زر</button>">
-        </div>
-
-        <div class="field-group">
-          <label>تنسيق الـ CSS:</label>
-          <textarea id="cssCode" class="ultra-input" rows="5" placeholder="ضع كود CSS هنا..."></textarea>
-        </div>
-
-        <div class="field-group">
-          <label>حالة الكود:</label>
-          <select id="isNew" class="ultra-input">
-            <option value="true">✅ جديد (New)</option>
-            <option value="false">❌ عادي</option>
-          </select>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn-main btn-logout" onclick="logout()">خروج <i class="fa fa-power-off"></i></button>
-          <button class="btn-main btn-save" onclick="saveCode()">حفظ <i class="fa fa-save"></i></button>
-        </div>
-      </div>
-
-      <div id="codesList">
-        <h3 style="text-align:center; color:var(--primary);"><i class="fa fa-database"></i> الأكواد المرفوعة</h3>
+  <div id="adminPanel" class="hidden">
+    <div class="ultra-card">
+      <h3 id="formTitle">إضافة كود جديد</h3>
+      <input type="hidden" id="editKey">
+      <input type="text" id="previewHTML" class="ultra-input" placeholder="كود HTML للمعاينة">
+      <textarea id="cssCode" class="ultra-input" rows="5" placeholder="كود CSS"></textarea>
+      <select id="isNew" class="ultra-input">
+        <option value="true">✅ جديد</option>
+        <option value="false">❌ عادي</option>
+      </select>
+      <div class="btn-row">
+        <button class="btn-main btn-logout" onclick="logout()">خروج</button>
+        <button class="btn-main btn-save" onclick="saveCode()">حفظ البيانات</button>
       </div>
     </div>
-
+    <div id="codesList"></div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -220,11 +145,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
-    /* 🛡️ حماية الكود - قفل الاختصارات */
-    document.onkeydown = function(e) {
-      if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
-    };
-
     const firebaseConfig = {
       apiKey: "AIzaSyB_IgmKCUS35ooOzzEYaQuidxgrXCHGGtU",
       authDomain: "soudfa-9a558.firebaseapp.com",
@@ -240,7 +160,7 @@
 
     function login() {
       auth.signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
-        .catch(e => document.getElementById("loginError").innerText = "❌ البريد أو الرمز خطأ");
+        .catch(e => alert("خطأ في البيانات"));
     }
 
     function logout() { auth.signOut().then(() => location.reload()); }
@@ -260,9 +180,9 @@
         cssCode: document.getElementById("cssCode").value,
         isNew: document.getElementById("isNew").value === "true"
       };
-      if(!data.previewHTML || !data.cssCode) return alert("املا الخانات ضلعي");
+      if(!data.previewHTML || !data.cssCode) return alert("املأ الحقول");
       const ref = key ? db.ref("codes/" + key) : db.ref("codes").push();
-      ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ بنجاح ✅"); });
+      ref.set(data).then(() => { resetForm(); loadCodes(); alert("تم الحفظ ✅"); });
     }
 
     function loadCodes() {
@@ -273,27 +193,40 @@
           const div = document.createElement("div");
           div.className = "item-card";
           div.innerHTML = `
-            <div style="margin-bottom:10px;">${d.previewHTML}</div>
+            <div style="margin-bottom:10px">${d.previewHTML}</div>
             <pre>${d.cssCode}</pre>
             <div class="btn-row">
-              <button class="btn-main" style="background:var(--primary); color:#fff; padding:8px;" onclick="editCode('${child.key}', \`${d.previewHTML}\`, \`${d.cssCode}\`, ${d.isNew})">تعديل</button>
-              <button class="btn-main" style="background:#e74c3c; color:#fff; padding:8px;" onclick="deleteCode('${child.key}')">حذف</button>
+              <button class="btn-main" style="background:#3498db; color:#fff" onclick="triggerEdit('${child.key}')">تعديل</button>
+              <button class="btn-main" style="background:#e74c3c; color:#fff" onclick="deleteCode('${child.key}')">حذف</button>
             </div>`;
           list.appendChild(div);
         });
       });
     }
 
-    function editCode(k, h, c, n) {
-      document.getElementById("editKey").value = k;
-      document.getElementById("previewHTML").value = h;
-      document.getElementById("cssCode").value = c;
-      document.getElementById("isNew").value = n ? "true" : "false";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // الطريقة المضمونة للتعديل
+    function triggerEdit(key) {
+      db.ref("codes/" + key).once("value", snap => {
+        const d = snap.val();
+        document.getElementById("editKey").value = key;
+        document.getElementById("previewHTML").value = d.previewHTML;
+        document.getElementById("cssCode").value = d.cssCode;
+        document.getElementById("isNew").value = d.isNew ? "true" : "false";
+        document.getElementById("formTitle").innerText = "تعديل الكود الحالي ✏️";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
 
-    function deleteCode(k) { if(confirm("تحذف الكود نهائياً؟")) db.ref("codes/"+k).remove(); }
-    function resetForm() { document.getElementById("editKey").value = ""; document.getElementById("previewHTML").value = ""; document.getElementById("cssCode").value = ""; }
+    function deleteCode(k) { if(confirm("حذف؟")) db.ref("codes/"+k).remove(); }
+    function resetForm() { 
+        document.getElementById("editKey").value = ""; 
+        document.getElementById("previewHTML").value = ""; 
+        document.getElementById("cssCode").value = ""; 
+        document.getElementById("formTitle").innerText = "إضافة كود جديد";
+    }
+    
+    // حماية الأزرار
+    document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
   </script>
 </body>
 </html>
